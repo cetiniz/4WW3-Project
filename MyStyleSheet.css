@@ -1,0 +1,392 @@
+/********** SITE WRAPPER FOR CENTERING PAGE *********/
+#wrapper {
+	margin: 0 auto;
+	max-width: 1080px;
+	background-color: white;
+}
+/****************** HEADER STYLES ***************/
+header {
+	display: grid;
+	height: 50px;
+	grid-template-columns: repeat(5,1fr);
+	background: white;
+	position: fixed;
+	width:1080px;
+	top:0;
+	box-shadow: 0px 5px 5px black;
+	z-index: 10;
+}
+.logo {
+	grid-column-start: 1;
+	grid-column-end:3;
+	display: flex;
+	float:left;
+	height: inherit;
+}
+.logo .left {
+	display: inline-flex;
+	flex-direction: column;
+	height: inherit;
+}
+.logo .left img {
+	justify-content: center;
+	margin: auto 30px;
+	height: 70px;
+}
+.logo .left {
+	display: inline-flex;
+}
+.logo .right {
+	margin: auto 30px;
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.logo img {
+	float: inherit;
+}
+.logo h1 {
+	float: inherit;
+	margin-left: 10%;
+	font-family: 'Playfair Display SC', serif;
+	color: black;
+}
+.menu-nav {
+	grid-column-start: 2;
+	grid-column-end: 6;
+	position: absolute;
+	padding-left: 40%;
+}
+.menu-nav ul {
+	float:left;
+	list-style: none;
+}
+.menu-nav li {
+	display: inline;
+	padding-right: 30px;
+	width: 10px;
+}
+.menu-nav a {
+	font-size: 1em;
+    font-family: 'Lato', sans-serif;
+	color: black;
+	text-decoration: none !important;
+}
+.menu-nav a:hover {
+	border-bottom: 2px solid;
+}
+/******************** SEARCH PAGE CONTENT STYLES ****************/
+.search-area {
+	background-image: url("main-background.jpg");
+	height: 80vh;
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: repeat(3,1fr);
+	padding-top: 150px;
+}
+.search-query {
+	grid-row-start: 2;
+	grid-column-start: 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.search-query .search-bar {
+	display: flex;
+	flex-direction: column;
+	border: none;
+	height: 60px;
+	width: 80%;
+	margin: 0;
+	padding: 0;
+}
+.search-query form {
+	display: flex;
+}
+.search-query .search-icon {
+	border: none;
+    margin: 0;
+    padding: 0;
+}
+.search-query .search-icon input {
+	height: 60px;
+}
+.search-query .search-bar input[type=search] {
+	justify-content: center;
+	height: 60px;
+	border: none;
+}
+.search-query .star-search {
+	border: none;
+	margin: 0;
+	padding: 0;
+	height: 60px;
+}
+.search-query .star-search select{
+	height: 60px;
+}
+ .search-query .search-icon input[type=image]{
+ 	height: 60px;
+ 	width: 60px;
+ 	border: none;
+ }
+ .search-button {
+ 	background-image: url(Vector_search_icon.svg.png);
+ }
+/****************** SUBMISSION PAGE CONTENT STYLES **************/
+.bg-grey {
+	background-color: #f8f8f8;
+}
+.input-form {
+	min-height: 500px;
+	padding-top: 150px;
+	text-align: center;
+	padding-bottom: 100px;
+}
+.input-form fieldset {
+	border: none;
+	padding: 7px;
+	margin: 5px 0px 10px 0px;
+	height: 46px;
+}
+.input-form input {
+	width: 370px;
+	height: 55px;
+	border-color: #4c759e;
+}
+.input-form .field-button{
+	padding-top: 10px;
+}
+.input-form::-moz-placeholder {
+    color: #a1a6b1;
+}
+.input-form h1 {
+	color: black;
+}
+.input-form input[type=text]:focus,.input-form input[type=email]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgb(21, 79, 7);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+}
+.input-form input[type=text],.input-form input[type=email], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+/****************** RESULTS PAGE CONTENT STYLES **************/
+.filter {
+	padding-top: 100px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background: linear-gradient(to bottom, #f0f0f0,white);
+	margin-top: 25px;
+}
+.filter h1 {
+	color:black;
+}
+.filter p {
+	font-family: Playfair;
+}
+.instrument-container {
+	margin-right: 50px;
+	margin-left: 50px;
+}
+.even-instrument {
+	display: grid;
+	grid-template-columns: 1fr 1fr 2fr;
+	margin-bottom: 15px;
+	border: 1px solid grey;
+	max-height: 150px;
+}
+.even-instrument .left-content {
+	grid-column-start: 1;
+	max-height: inherit;
+}
+.even-instrument .right-content {
+	grid-column-start: 3;
+	background-color: #d4d4d4;
+	max-height: inherit;
+}
+.even-instrument .right-content p {
+	margin: 10px;
+	text-align: justify;
+}
+.odd-instrument .right-content p {
+	margin: 10px;
+	text-align: justify;
+}
+.odd-instrument .middle-content {
+	grid-column-start: 2;
+	background-color: #d4d4d4;
+}
+.even-instrument .middle-content {
+	grid-column-start: 2;
+	background-color: #bcbcbc;
+}
+.odd-instrument {
+	display: grid;
+	grid-template-columns: 1fr 1fr 2fr;
+	margin-bottom: 15px;
+	border: 1px solid grey;
+	max-height: 150px;
+}
+.odd-instrument .left-content {
+	grid-column-start: 1;
+	max-height: inherit;
+}
+.odd-instrument .right-content {
+	grid-column-start: 3;
+	background-color: #bcbcbc;
+	max-height: inherit;
+}
+.main-content {
+	position: relative;
+	width: 100%;
+	height: inherit;
+}
+.main-content .left-map-content {
+	position: relative;
+	width: 50%;
+}
+.main-content .right-map-content {
+	position: fixed;
+	background-color: black;
+	height: 300px;
+	width: 300px;
+	float: right;
+	bottom: 20vh;
+	right: 15vw;
+	max-width: 30vw;
+}
+/****************** OBJECT PAGE CONTENT STYLES **************/
+.map-space {
+	padding-top: 150px;
+	height: 600px;
+	max-width: inherit;
+	display: block;
+}
+.equipment-detail  {
+	float: left;
+	width: 400px;
+	border: 1px solid gainsboro;
+	margin-left: 20px;;
+}
+.map {
+	float: right;
+	margin-right: 20px;
+	border: 1px solid gainsboro;
+}
+.map-space h2 {
+	text-align: right;
+	margin: 5px;
+	background-color: #f5f5f5;
+	margin: 0;
+	padding: 4px;
+    padding-right: 4px;
+	padding-right: 20px;
+	color: #595959;
+	font-family: Lato;
+	font-size: 20px;
+}
+.review {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	max-width: 100%;
+	border-bottom: 2px solid gainsboro;
+	margin-left: 20px;
+	margin-right: 20px;
+	box-shadow: 0px 3px 3px gainsboro;
+	margin-top: 0;
+	margin-bottom: 20px;
+	border: 1px solid gainsboro;
+}
+.review .right-content {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+.right-content h2 {
+	font-family: Lato;
+	border-bottom: 1px solid gainsboro;
+	margin-right: 40px;
+	font-size: 20px;
+}
+.review .right-content p {
+	text-align: justify;
+	text-justify: inter-word;
+	margin-right: 40px;
+}
+.left-content {
+	display: grid;
+	grid-template-rows: 1fr 3fr;
+	grid-template-columns: 1fr 1fr;
+}
+.left-content h2 {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	font-family: Lato;
+	font-size: 20px;
+	margin-left: 10px;
+	margin-bottom: 33px;
+	border-bottom: 1px solid gainsboro;
+	margin-right: 20px;
+}
+.left-content .user {
+	grid-column-start: 1;
+	grid-row-start: 2;
+	margin-left: 5px;
+}
+.left-content .user-info {
+	grid-row-start: 2;
+    margin-right: 20px;
+}
+}
+/***************** STYLES FOR FOOTER *****************/
+footer {
+	background-color: #183638;
+	height: 6vh;
+	bottom:0;
+	position: block;
+	width: 1080px;
+}
+
+.footer-grid {
+	display: flex;
+	flex-flow: row;
+	margin: 0;
+	justify-content: center;
+	background-color: #183638;
+}
+.footer-grid ul {
+	list-style: none; 
+}
+.footer-grid li {
+	display: inline;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.footer-grid a {
+
+    font-family: 'Lato', sans-serif;
+
+;
+	color:white;
+}
+
+/******************* DEFAULTS FOR RAW TAGS*************** */
+h1 {
+	color: white;
+    font-family: 'Lato', sans-serif;
+}
+p {
+    font-family: 'Lato', sans-serif;
+}
+body {
+	background-color: #0c4245;
+}
