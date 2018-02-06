@@ -222,7 +222,7 @@
 	    grid-template-columns: 1fr 2fr 1fr;
 		-ms-grid-rows: (1fr)[3];
 	    grid-template-rows: repeat(3,1fr);
-		padding-top: 150px;
+		padding-top: 100px;
 	}
 	.search-query .search-bar {
 		width: 80%;
@@ -355,9 +355,9 @@
 }
 .input-form {
 	min-height: 500px;
-	padding-top: 150px;
+	padding-top: 100px;
 	text-align: center;
-	padding-bottom: 100px;
+	padding-bottom: 50px;
 }
 .input-form fieldset {
 	border: none;
@@ -392,6 +392,13 @@
   border: 1px solid #DDDDDD;
   font-family: Lato;
   color: grey;
+  height: 47px;
+}
+.input-form input[type=button] {
+	font-size: 12px;
+}
+#uploaded-txt {
+	width: 210px;
 }
 .input-form input[type=submit] {
 	background-color: #a4dbd6;
@@ -423,19 +430,29 @@
  /****************** RESULTS PAGE CONTENT STYLES **************/
 
 .filter {
-	margin-left: 50px;
-	margin-right: 50px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0),to(white));
-	background: -webkit-linear-gradient(top, #f0f0f0,white);
-	background: -o-linear-gradient(top, #f0f0f0,white);
-	background: linear-gradient(to bottom, #f0f0f0,white);
+	background: gainsboro;
 	margin-top: 25px;
+	display: block;
 }
-.filter h1 {
-	color:black;
+.filter .mid-content {
+	margin: 0px 100px;
+	background: #7bd5bd;
+	text-align: center;
+	border-radius: 50px 50px 00px 0px
 }
-.filter p {
+.filter .mid-content h1 {
+	font-weight: bold;
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	color:white;
+}
+.filter .mid-content p {
 	font-family: Playfair;
+	color: white;
+	padding: 0px;
+	margin: 0px;
 }
 
 .main-content {
@@ -459,24 +476,67 @@
 	max-width: 30vw;
 }
 .table-style {
-	margin: 0px 50px;
+	margin: 0px 98px;
+	padding-top: 3px;
+	font-family: Lato;
+}
+.table-header {
+	background: gainsboro;
+}
+.table-header th {
+	color: white;
+}
+.table-even {
+	background: #def3ed;
+}
+.table-odd {
+	background: #f0f9f6;
 }
 .map-result {
 	display: block;
-	padding-top: 100px;
+	padding-top: 20px;
 }
 .map-result img {
 	display: block;
-	margin: 0px 290px;
+	margin: auto auto;
 	height: 500px;
 	width: 500px;
 	border: 1px solid gainsboro;
 	-webkit-box-shadow: 5px 5px 5px gainsboro;
-	        box-shadow: 5px 5px 5px gainsboro;
+	box-shadow: 5px 5px 5px gainsboro;
 }
 .map-result h2 {
 	display: block;
 	text-align: center;
+}
+.top-pad {
+	padding-top: 20px;
+}
+.top-pad .search-bar {
+	background-color: gainsboro;
+	display: block;
+}
+.search-bar .search-query {
+	width: 500px;
+	margin: 50px auto 0px auto;
+	padding: 10px;
+	background-color: gainsboro;
+}
+.search-bar a {
+	font-size: 20px;
+	font-family: Lato;
+	margin-left: 30px;
+	background-color: #7bd5bd;
+	color: white;
+	border-radius: 25px;
+	padding: 10px;
+	text-decoration: none;
+	margin-top: 20px;
+	width: 180px;
+	position: absolute;
+}
+.search-bar a:hover {
+	background-color: #4bbd9e;
 }
 /****************** OBJECT PAGE CONTENT STYLES **************/
 @media screen and (min-width: 320px) and (max-width: 1023px) {
@@ -532,10 +592,27 @@
 }
 @media screen and (min-width: 1024px) {
 	.map-space {
-		padding-top: 150px;
+		padding-top: 100px;
 		height: 600px;
 		max-width: inherit;
 		display: block;
+		padding-bottom: 40px;
+	}
+	.equipment-container {
+		background: gainsboro;
+		max-width: inherit;
+		height: 100%;
+		display: block;
+		margin: 0px 50px;
+		border-radius: 25px;
+	}
+	.equipment-container .search-bar a {
+		margin-left: 30px !important;
+		padding: 4px !important;
+		margin-top: 32px !important;
+		width: 290px !important;
+		margin-left: 40px !important;
+		border-radius: 0px !important;
 	}
 	.map img {
 		height:500px;
@@ -544,18 +621,32 @@
 	}
 	.equipment-detail  {
 		float: left;
-		width: 400px;
-		border: 1px solid gainsboro;
-		margin-left: 20px;;
+    	width: 300px;
+    	margin-left: 40px;
+    	display: block;
+    	margin-top: 115px;
+		background: #fff;
+		border-radius: 25px 0px 0px 25px;
 	}
 	.object-detail p {
-		margin: 35px;
+		margin: 20px;
 	}
 	.review {
 		display: -ms-grid;
 		display: grid;
 		-ms-grid-columns: 1fr 2fr;
 		grid-template-columns: 1fr 2fr;
+	}
+	.map {
+		float: right;
+		margin-right: 50px;
+		border: 1px solid gainsboro;
+		margin-top: 30px;
+	}
+	.map-space h2 {
+		border-radius: 0px 0px 0px 0px;
+		background-color: #7bd5bd !important;
+		color: #fff !important;
 	}
 }
 
@@ -696,7 +787,7 @@ p {
     font-family: 'Lato', sans-serif;
 }
 body {
-	background-color: #0c4245;
+	background-color: #7bd5bd;
 }
 select {
     -webkit-appearance: none;
@@ -709,4 +800,14 @@ input[type=submit],input[type=button] {
 	border: none;
 	font-size: 24px;
 	color: white;
+}
+/******************** UNIVERSAL TAGS **********************/
+.italic {
+	font-style: italic;
+}
+.center {
+	text-align: center;
+}
+.margin-20 p {
+	margin: 20px;
 }
