@@ -125,6 +125,9 @@
 	margin: 0;
 	padding: 0;
 }
+.search-query .search-bar input[type=search] {
+	width: 100%;
+}
 .search-query form {
 	display: flex;
 }
