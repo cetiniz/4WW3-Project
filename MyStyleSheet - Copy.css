@@ -83,6 +83,7 @@
 	}
 	.menu-nav {
 		grid-column-start: 5;
+		-ms-grid-column: 5;
 	}
 	.menu-bttn {
 		background-color: gainsboro;
@@ -101,6 +102,10 @@
     	z-index: 1;
     	list-style: none;
     	padding: 0;
+
+    	float: right;
+    	margin-top: 0px;
+    	padding-top: 0px;
 	}
 	.menu-nav a {
 		color: black;
@@ -201,6 +206,14 @@
 	.search-area fieldset input, .search-area fieldset select, .search-bar {
 		width: 100%;
 	}
+	.search-bar a{
+		position: static;
+		margin-left: 80px;
+	}
+	.search-bar {
+		height: 40px;
+		margin-top: 10px;
+	}
 	.search-query form {
 		display: flex;
 		flex-direction: column;
@@ -233,6 +246,11 @@
 	}
 	.search-query .search-bar input[type="search"] {
 		border-radius: 20px 0px 0px 20px;
+	}
+	.search-bar a {
+		margin-left: 30px;
+		margin-top: 20px;
+		position: absolute;
 	}
 }
 .search-area {
@@ -428,7 +446,83 @@
 	display: inline;
 	}
  /****************** RESULTS PAGE CONTENT STYLES **************/
-
+@media screen and (min-width: 320px) and (max-width: 1023px){
+	.top-pad {
+		display: block;
+		padding-top: 40px;
+	}
+	.top-pad .search-bar {
+		height: 50px;
+		padding-top: 10px;
+	}
+	.top-pad .search-bar a {
+		margin: 0px 50px;
+		padding: 0px 20px;
+   		padding-top: 0px;
+		display: block;
+		padding-top: 5px;
+		height: 30px;
+		position: static;
+	}
+	.search-bar .search-query {
+		margin: 50px auto 0px auto;
+		padding: 10px;
+		background-color: gainsboro;
+		display: block;
+		width: 300px;
+	}
+	.search-bar .search-query select {
+		width: 100%;
+	}
+	.map-result {
+		display: block;
+		padding-top: 20px;
+		margin-top: 240px;
+	}
+	.map-result img {
+		display: block;
+		margin: auto auto;
+		height: 320px;
+		width: 320px;
+		border: 0px;
+	}
+	.filter .mid-content {
+		box-shadow: 0px 5px 2px gainsboro !important;
+		margin: 0px !important;
+		border-radius: 0px !important;
+	}
+	.table-style {
+		width: 300px;
+		margin: 10px;
+	}
+	.table-style td {
+		font-size: 12px;
+	}
+	#hide {
+		display: none;
+	}
+}
+@media screen and (min-width: 1024px) {
+	.top-pad {
+		padding-top: 20px;
+	}
+	.search-bar .search-query{
+		width: 500px;
+	}
+	.map-result img {
+		height: 500px;
+		width: 500px;
+		border: 1px solid gainsboro;
+		-webkit-box-shadow: 5px 5px 5px gainsboro;
+		box-shadow: 5px 5px 5px gainsboro;
+	}
+	.table-style {
+		margin: 0px 98px;
+	}
+	td {
+		font-size: 12px;
+	}
+}
 .filter {
 	background: gainsboro;
 	margin-top: 25px;
@@ -476,7 +570,6 @@
 	max-width: 30vw;
 }
 .table-style {
-	margin: 0px 98px;
 	padding-top: 3px;
 	font-family: Lato;
 }
@@ -499,25 +592,16 @@
 .map-result img {
 	display: block;
 	margin: auto auto;
-	height: 500px;
-	width: 500px;
-	border: 1px solid gainsboro;
-	-webkit-box-shadow: 5px 5px 5px gainsboro;
-	box-shadow: 5px 5px 5px gainsboro;
 }
 .map-result h2 {
 	display: block;
 	text-align: center;
-}
-.top-pad {
-	padding-top: 20px;
 }
 .top-pad .search-bar {
 	background-color: gainsboro;
 	display: block;
 }
 .search-bar .search-query {
-	width: 500px;
 	margin: 50px auto 0px auto;
 	padding: 10px;
 	background-color: gainsboro;
@@ -525,20 +609,19 @@
 .search-bar a {
 	font-size: 20px;
 	font-family: Lato;
-	margin-left: 30px;
 	background-color: #7bd5bd;
 	color: white;
 	border-radius: 25px;
 	padding: 10px;
 	text-decoration: none;
-	margin-top: 20px;
+	
 	width: 180px;
-	position: absolute;
+	
 }
 .search-bar a:hover {
 	background-color: #4bbd9e;
 }
-/****************** OBJECT PAGE CONTENT STYLES **************/
+/****************** OBJECT and USER REGISTRATION PAGE CONTENT STYLES **************/
 @media screen and (min-width: 320px) and (max-width: 1023px) {
 	.equipment-detail {
 		width: 280px;
@@ -588,6 +671,12 @@
 	}
 	.right-content p {
 		font-size: 10px;
+	}
+	#uploaded-txt {
+		width: 100px !important;
+	}
+	.upload-button {
+		width: 90px !important;
 	}
 }
 @media screen and (min-width: 1024px) {
@@ -647,6 +736,12 @@
 		border-radius: 0px 0px 0px 0px;
 		background-color: #7bd5bd !important;
 		color: #fff !important;
+	}
+	#uploaded-txt {
+		width: 200px;
+	}
+	.upload-button {
+		width: 15%;
 	}
 }
 
@@ -747,7 +842,6 @@
 		width: 320px;
 	}
 }
-
 .footer-grid {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -771,10 +865,7 @@
 	padding-right: 10px;
 }
 .footer-grid a {
-
     font-family: 'Lato', sans-serif;
-
-;
 	color:white;
 }
 
