@@ -1,148 +1,444 @@
-/********** SITE WRAPPER FOR CENTERING PAGE *********/
-@media screen and (min-width: 1080px) {
+/********** SITE WRAPPER FOR CENTERING PAGE ************
+**********************Description: *********************
+The wrapper id is used at the top of every html document 
+in order to provide a centered page by setting the margin 
+to 0/auto and also specifies the max width depending on 
+the type of display. Screens smaller than 1024 pixles get 
+a 320 pixel screen while screens larger than 1024 pixels 
+still get a 1024 pixel width.
+**********************TERMINOLOGY************************
+				
+				.<element> == a class
+				
+				#<element> == an identifier
+				
+				@media == specifies that all 
+				CSS within applies to specific
+				view/device
+**********************************************************/
+
+@media screen and (min-width: 1024px) {
 	#wrapper {
 		margin: 0 auto;
-		max-width: 1080px;
+		max-width: 1024px;
 		background-color: white;
 	}
 }
-@media screen and (min-width: 375px) and (max-width: 1079px){
+@media screen and (min-width: 320px) and (max-width: 1023px){
 	#wrapper {
 		margin: 0 auto;
-		max-width: 375px;
+		max-width: 320px;
 		background-color: white;
 	}
 }
-/****************** HEADER STYLES ***************/
-@media screen and (min-width: 1080px) {
+/****************** HEADER STYLES *********************
+******************** Description: *********************
+The header styles were divided up into three categories,
+much like the remainder of the CSS code. One category is
+CSS code specific for the 1024px width plus layout,
+one for content that is less than that but greater that
+320px wide and a third group that the former groups share*/
+@media screen and (min-width: 1024px) {
 	header {
+		/* A grid display was used to position all the items 
+		across the header/menu so they would be easy to place
+		and work with. A special grid declaration had to be
+		made for microsoft edge. The width of the header
+		is based on the current media specifications (1024px)
+		the Z-index makes sure that the header/menu overlaps 
+		everything when the user starts to scroll since
+		the header is a fixed element (it stays on the top of
+		the screen regardless of how much the user scrolls).
+		Most of the other CS is just for decoration (box-shadow)*/
+		display: -ms-grid;
 		display: grid;
 		height: 50px;
+		-ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
 		grid-template-columns: repeat(5,1fr);
 		background: white;
 		position: fixed;
-		width:1080px;
+		width:1024px;
 		top:0;
+		-webkit-box-shadow: 0px 5px 5px black;
 		box-shadow: 0px 5px 5px black;
 		z-index: 10;
 	}
+
+	/* This code was used to place the menu into the 2nd to
+	6th column of the header 1d grid. The padding was used 
+	for positioning*/
+	.menu-nav {
+		-ms-grid-column: 2;
+		grid-column-start: 2;
+		grid-column-end: 6;
+		position: absolute;
+		padding-left: 40%;
+	}
+	/* The list-style:none was especially important because
+	without it an annoying bullet point would show up for 
+	list type elements. The float was added for positioning */
+	.menu-nav ul {
+		float:left;
+		list-style: none;
+	}
+	/* Each list item was displayed inline so that they would 
+	not stack ontop of each other but would be beside each
+	other horizontally. The width and padding were added to 
+	style them to my liking. */
+	.menu-nav li {
+		display: inline;
+		padding-right: 30px;
+		width: 10px;
+	}
+	/* The text-decoration was added to remove the underline
+	text that is defaulted for anchor elements. The rest of
+	the CSS was used for various styling */
+	.menu-nav a {
+		font-size: 1em;
+		font-family: 'Lato', sans-serif;
+		color: black;
+		text-decoration: none !important;
+	}
+	/* When hovering over the menu, navigation anchor tags, 
+	a border on the bottom will appear (since I included
+	":hover") to let the user know where the mouse is/ to
+	provide direction. */
+	.menu-nav a:hover {
+		border-bottom: 2px solid;
+	}
+	/* This code was included to hide a button that is 
+	important for the mobile version of the header menu */
+	.menu-bttn {
+		display: none;
+	}
+	/* Default stylings for h1 tags with class logo */
+	.logo h1 {
+		float: inherit;
+		margin-left: 10%;
+		font-family: 'Playfair Display SC', serif;
+		color: black;
+	}
 }
-@media screen and (min-width: 375px) and (max-width: 1079px) {
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+	/* Same code as above but width has been set to 320px */
 	header {
+		display: -ms-grid;
 		display: grid;
 		height: 50px;
+		-ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
 		grid-template-columns: repeat(5,1fr);
 		background: white;
 		position: fixed;
-		width:375px;
+		width:320px;
 		top:0;
+		-webkit-box-shadow: 0px 5px 5px black;
 		box-shadow: 0px 5px 5px black;
 		z-index: 10;
 	}
+	/* Reiszed font to account for smaller menu size */
+	.logo .right h1 {
+		float: inherit;
+		margin-left: 10%;
+		font-family: 'Playfair Display SC', serif;
+		color: black;
+		font-size: 10px;
+		width:100%;
+	}
+	/* Different menu was used for mobile version:
+	I positioned the navigation menu at the very
+	last column since it is supposed to be a drop
+	down menu (check out 320px version of app) */
+	.menu-nav {
+		grid-column-start: 5;
+		-ms-grid-column: 5;
+	}
+	/* This CSS targets a button used for displaying
+	a drop down menu that was more appropriate for the
+	mobile app. Below are simple stylings for the button */
+	.menu-bttn {
+		background-color: gainsboro;
+		color: white;
+		font-size: 16px;
+		border: none;
+		width: 90px;
+		height: 45px;
+		float: right;
+	}
+	/* Below are simple stylings for the unordered list
+	which represents my navigation menu. Display is set
+	to none for now since it is only supposed to display
+	when the user hovers over the menu button. Display
+	none removes the list from view and the space it takes 
+	up */
+	.menu-nav ul {
+		display: none;
+		background-color: #f9f9f9;
+		min-width: 90px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+		list-style: none;
+		padding: 0;
+		float: right;
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+	.menu-nav a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		text-align: center;
+	}
+	/* When the unordered list (ontop of the button) 
+	is hovered over, this changes its diplay property (
+	previously set to none) to flex. Setting the flex
+	direction to column makes all the list items appear
+	vertically like magic :) */
+	.menu-nav:hover ul {
+		display: flex;
+		flex-direction: column;
+	}
+	/* Provides better feedback for user since when
+	changing elements in the dropdown menu (mobile) 
+	they will be highlighted as gray when hovered 
+	over */
+	.menu-nav li:hover {
+		background-color: #f1f1f1;
+
+	}
 }
+/* This code is for the logo component which contains 
+the logo image (svg) as well as the logo text. I 
+created a grid since it was very easy to position
+the elements in the exact spots I wanted them and
+it translated well when making the mobile app. 
+The different vendor prefixes I used are for different
+broswer support. The worst is for microsoft edge since they
+use almost a completely different syntax */
 .logo {
+	-ms-grid-column: 1;
 	grid-column-start: 1;
-	grid-column-end:3;
+	-ms-grid-column-span: 2;
+	grid-column-end:4;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	float:left;
 	height: inherit;
 }
+/* This contains the stylings for the svg icon.
+I set the display as a flex box so I could easily
+center the icon to the height of the element in which
+it is contained in, and is why I inherited the height
+as to make it explicit */
 .logo .left {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	height: inherit;
 }
+/* The code below is for the logo: it centers the
+logo and gives it some space from other objects (margin)
+as well as declares its height (essentially how large
+I want the svg to be since it is nicely scalable); */
 .logo .left img {
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	margin: auto 30px;
 	height: 70px;
 }
-.logo .left {
-	display: inline-flex;
-}
+/* This code is just to create a flex box
+so that I can center the logo text as well.
+The justify-content centers all the elements within
+the element that has the class below. */
 .logo .right {
 	margin: auto 30px;
 	height: inherit;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+}
+/* Just styling for the text, allowing it to take
+100% of the space its given. */
+.logo .right h1 {
+	width: 100%;
 }
 .logo img {
 	float: inherit;
 }
-.logo h1 {
-	float: inherit;
-	margin-left: 10%;
-	font-family: 'Playfair Display SC', serif;
-	color: black;
+
+/**************** SEARCH PAGE CONTENT STYLES ****************
+********************** Description: *************************
+dThe following code contains stylings for the search 
+page specifically */
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+	/* This code just sets the size of the font according to
+	the 320px guidelines */
+	.search-query h1 {
+		font-size: 15px;
+	}
+	/* I set the search area (the main content) to be 90 
+	viewheight which is a dynamic unit that takes up a %
+	of the screen itself. This way it would be easier to
+	scale on various devices. I setup a grid as well,
+	allocating a large amount of space to the third column
+	and once again, used fractional units (fr) since they
+	also are a % unit instead of a discrete unit (ie. px).*/
+	.search-area {
+		height: 90vh;
+		display: -ms-grid;
+		display: grid;
+		-ms-grid-columns: 1fr 5fr 1fr;
+		grid-template-columns: 1fr 5fr 1fr;
+		-ms-grid-rows: 1fr 1fr 1fr;
+		grid-template-rows: repeat(3,1fr);
+
+	}
+	/* Resizing the input areas for the mobile app view */
+	.search-area fieldset input, .search-area fieldset select, .search-bar {
+		width: 100%;
+	}
+	/* Repositioning anchor elements in mobile version */
+	.search-bar a{
+		position: static;
+		margin-left: 80px;
+	}
+	/* Assigning new height for mobile version for the search bar */
+	.search-bar {
+		height: 40px;
+		margin-top: 10px;
+	}
+	/* Used a flex box with column direction since in the mobile version
+	I thought it would be easier to display the contents vertically  */
+	.search-query form {
+		display: flex;
+		flex-direction: column;
+	}
+	/* Border stylings and resizing the input */
+	.search-query .search-icon input {
+		border-radius: 0px 0px 20px 20px;
+		width: 100%;
+	}
+	.search-query .search-bar input[type="search"] {
+		border-radius: 20px 20px 0px 0px;
+	}
 }
-.menu-nav {
-	grid-column-start: 2;
-	grid-column-end: 6;
-	position: absolute;
-	padding-left: 40%;
+@media screen and (min-width: 1024px) {
+	/* Same as above but for a larger screen width (all code
+	below) */
+	.search-area {
+		height: 80vh;
+		display: -ms-grid;
+		display: grid;
+		-ms-grid-columns: 1fr 2fr 1fr;
+		grid-template-columns: 1fr 2fr 1fr;
+		-ms-grid-rows: 1fr 1fr 1fr;
+		grid-template-rows: repeat(3,1fr);
+		padding-top: 100px;
+	}
+	.search-query .search-bar {
+		width: 80%;
+	}
+	.search-query .search-icon input {
+		border-radius: 0px 20px 20px 0px;
+		width: 50px;
+	}
+	.search-query .search-bar input[type="search"] {
+		border-radius: 20px 0px 0px 20px;
+	}
+	.search-bar a {
+		margin-left: 30px;
+		margin-top: 20px;
+		position: absolute;
+	}
 }
-.menu-nav ul {
-	float:left;
-	list-style: none;
-}
-.menu-nav li {
-	display: inline;
-	padding-right: 30px;
-	width: 10px;
-}
-.menu-nav a {
-	font-size: 1em;
-    font-family: 'Lato', sans-serif;
-	color: black;
-	text-decoration: none !important;
-}
-.menu-nav a:hover {
-	border-bottom: 2px solid;
-}
-/******************** SEARCH PAGE CONTENT STYLES ****************/
+/* Background image of search area set to night sky.
+All classes below are allied to mobile and desktop version */
 .search-area {
-	background-image: url("main-background.jpg");
-	height: 80vh;
-	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;
-	grid-template-rows: repeat(3,1fr);
-	padding-top: 150px;
+	background-image: url("pexels-photo-134074.jpeg");
 }
+/* Positioned the search query elements in the very center
+and set the display as a column flex box in order to center
+lower elements (used justify-content to do that) */
 .search-query {
+	-ms-grid-row: 2;
 	grid-row-start: 2;
+	-ms-grid-column: 2;
 	grid-column-start: 2;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 }
+/* See above */
 .search-query .search-bar {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	border: none;
 	height: 60px;
-	width: 80%;
 	margin: 0;
 	padding: 0;
 }
+/* The [type=search] tells CSS to apply the styling
+specifically on input elements that are of type search */
 .search-query .search-bar input[type=search] {
 	width: 100%;
 }
+.search-query .search-icon input[type=submit] {
+	background-color: #a4dbd6;
+	border: none;
+	font-size: 24px;
+	color: white;
+}
+/* Cursor pointer changes the cursor to the typical:
+"can click on this object" cursor */
+.search-query .search-icon input[type=submit]:hover {
+	background-color: #21b1a4;
+	cursor: pointer;
+}
 .search-query form {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 .search-query .search-icon {
 	border: none;
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 .search-query .search-icon input {
 	height: 60px;
 }
 .search-query .search-bar input[type=search] {
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	height: 60px;
 	border: none;
+	padding: 10px;
 }
 .search-query .star-search {
 	border: none;
@@ -150,26 +446,62 @@
 	padding: 0;
 	height: 60px;
 }
+/* Styling specific for the select
+dropdown menu to remove all the unappealing
+design elements */
 .search-query .star-search select{
 	height: 60px;
+	border: none;
+	border-left-width: medium;
+	border-left-style: none;
+	border-left-color: currentcolor;
+	padding: 5px;
+	border-left: 1px solid gainsboro;
+	font-family: Lato;
+	color: grey;
+	padding: 10px;
 }
- .search-query .search-icon input[type=image]{
- 	height: 60px;
- 	width: 60px;
- 	border: none;
- }
- .search-button {
- 	background-image: url(Vector_search_icon.svg.png);
- }
+/* Same as above but for input type image */
+.search-query .search-icon input[type=image]{
+	height: 60px;
+	width: 60px;
+	border: none;
+}
 /****************** SUBMISSION PAGE CONTENT STYLES **************/
+@media screen and (min-width: 320px) and (max-width: 1023px){
+	.input-form input {
+		width: 200px;
+	}
+	.input-form .spam-email {
+		background-color: white;
+		padding: 0;
+		margin-top: 30px;
+		height: 60px;
+		margin: 30px 60px;
+	}
+}
+@media screen and (min-width: 1024px){
+	.input-form input {
+		width: 370px;		
+	}
+	.input-form .spam-email {
+		background-color: white;
+		padding: 0;
+		margin: 25px 330px;
+	}
+}
+.input-form input {
+	height: 55px;
+	border-color: #4c759e;
+}
 .bg-grey {
 	background-color: #f8f8f8;
 }
 .input-form {
 	min-height: 500px;
-	padding-top: 150px;
+	padding-top: 100px;
 	text-align: center;
-	padding-bottom: 100px;
+	padding-bottom: 50px;
 }
 .input-form fieldset {
 	border: none;
@@ -177,34 +509,61 @@
 	margin: 5px 0px 10px 0px;
 	height: 46px;
 }
-.input-form input {
-	width: 370px;
-	height: 55px;
-	border-color: #4c759e;
-}
+
 .input-form .field-button{
 	padding-top: 10px;
 }
+/* This is a specific tag to change the 
+color of the placeholder text for mozilla firefox
+for input elements */
 .input-form::-moz-placeholder {
-    color: #a1a6b1;
+	color: #a1a6b1;
 }
 .input-form h1 {
 	color: black;
 }
+/* The commas can be used to specify multiple groups 
+of html that should be styled: the ":focus" occurs 
+when the user selects a text box. So this code will
+provide a highlight on the box when the user selects it.*/
 .input-form input[type=text]:focus,.input-form input[type=email]:focus,.input-form input[type=date]:focus, textarea:focus {
-  box-shadow: 0 0 5px rgb(21, 79, 7);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
+	-webkit-box-shadow: 0 0 5px rgb(21, 79, 7);
+	box-shadow: 0 0 5px rgb(123, 213, 189);
+	padding: 3px 0px 3px 3px;
+	margin: 5px 1px 3px 0px;
 }
+/* The transition is so that the highlight 
+specified above happens gradually, making
+for a nice effect */
 .input-form input[type=text],.input-form input[type=email],.input-form input[type=date], textarea {
-  -webkit-transition: all 0.30s ease-in-out;
-  -moz-transition: all 0.30s ease-in-out;
-  -ms-transition: all 0.30s ease-in-out;
-  -o-transition: all 0.30s ease-in-out;
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #DDDDDD;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	padding: 3px 0px 3px 3px;
+	margin: 5px 1px 3px 0px;
+	border: 1px solid #DDDDDD;
+	font-family: Lato;
+	color: grey;
+	height: 47px;
+}
+.input-form input[type=button] {
+	font-size: 12px;
+}
+/* The following code allows the button elements in the form to change color
+when hovered on, helping the user know that the elements are clickable */
+.input-form input[type=button]:hover, .input-form input[type=submit]:hover {
+	background-color: #21b1a4;
+}
+#uploaded-txt {
+	width: 210px;
+}
+.input-form input[type=submit] {
+	background-color: #a4dbd6;
+	border: none;
+	font-size: 24px;
+	color: white;
 }
 .input-form .uploaded-txt {
 	width: 15%;
@@ -214,12 +573,7 @@
 	width: 15%;
 }
 .input-form .spam-email {
-	background-color: white;
-	padding: 0;
-	margin-top: 25px;
-	margin-right: 355px;
-	margin-bottom: 25px;
-	margin-left: 355px;
+	
 }
 .spam-email p {
 	display: inline;
@@ -231,75 +585,117 @@
 .spam-email input {
 	height: 10px;
 	display: inline;
+}
+/****************** RESULTS PAGE CONTENT STYLES **************/
+@media screen and (min-width: 320px) and (max-width: 1023px){
+	.top-pad {
+		display: block;
+		padding-top: 40px;
 	}
- /****************** RESULTS PAGE CONTENT STYLES **************/
-
+	.top-pad .search-bar {
+		height: 50px;
+		padding-top: 10px;
+	}
+	.top-pad .search-bar a {
+		margin: 0px 50px;
+		padding: 0px 20px;
+		padding-top: 0px;
+		display: block;
+		padding-top: 5px;
+		height: 30px;
+		position: static;
+	}
+	.search-bar .search-query {
+		margin: 50px auto 0px auto;
+		padding: 10px;
+		background-color: gainsboro;
+		display: block;
+		width: 300px;
+	}
+	.search-bar .search-query select {
+		width: 100%;
+	}
+	.map-result {
+		display: block;
+		padding-top: 20px;
+		margin-top: 240px;
+	}
+	.map-result img {
+		display: block;
+		margin: auto auto;
+		height: 320px;
+		width: 320px;
+		border: 0px;
+	}
+	/* The !important will override CSS that would
+	otherwise override it. For example, css outside
+	of the media queries takes higher priority than the
+	CSS below. The !important will override that allowing
+	it to take more importance. */
+	.filter .mid-content {
+		box-shadow: 0px 5px 2px gainsboro !important;
+		margin: 0px !important;
+		border-radius: 0px !important;
+	}
+	.table-style {
+		width: 300px;
+		margin: 10px;
+	}
+	.table-style td {
+		font-size: 12px;
+	}
+	.hide {
+		display: none;
+	}
+}
+/* The Rest of the code below is variants of the elements I have described above, using the same techniques! */
+@media screen and (min-width: 1024px) {
+	.top-pad {
+		padding-top: 20px;
+	}
+	.search-bar .search-query{
+		width: 500px;
+	}
+	.map-result img {
+		height: 500px;
+		width: 500px;
+		border: 1px solid gainsboro;
+		-webkit-box-shadow: 5px 5px 5px gainsboro;
+		box-shadow: 5px 5px 5px gainsboro;
+	}
+	.table-style {
+		margin: 0px 98px;
+	}
+	td {
+		font-size: 12px;
+	}
+}
 .filter {
-	margin-left: 50px;
-	margin-right: 50px;
-	background: linear-gradient(to bottom, #f0f0f0,white);
+	background: gainsboro;
 	margin-top: 25px;
+	display: block;
 }
-.filter h1 {
-	color:black;
+.filter .mid-content {
+	margin: 0px 100px;
+	background: #7bd5bd;
+	text-align: center;
+	border-radius: 50px 50px 00px 0px
 }
-.filter p {
+.filter .mid-content h1 {
+	font-weight: bold;
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	color:white;
+}
+.filter .mid-content p {
 	font-family: Playfair;
+	color: white;
+	padding: 0px;
+	margin: 0px;
 }
-.instrument-container {
-	margin-right: 50px;
-	margin-left: 50px;
-}
-.even-instrument {
-	display: grid;
-	grid-template-columns: 1fr 1fr 2fr;
-	margin-bottom: 15px;
-	border-bottom: 1px solid gainsboro;
-	max-height: 150px;
-	box-shadow: 4px 4px 4px gainsboro;
-}
-.even-instrument .left-content {
-	grid-column-start: 1;
-	max-height: inherit;
-}
-.even-instrument .right-content {
-	grid-column-start: 3;
-	background-color: #d4d4d4;
-	max-height: inherit;
-}
-.even-instrument .right-content p {
-	margin: 10px;
-	text-align: justify;
-}
-.odd-instrument .right-content p {
-	margin: 10px;
-	text-align: justify;
-}
-.odd-instrument .middle-content {
-	grid-column-start: 2;
-	background-color: #d4d4d4;
-}
-.even-instrument .middle-content {
-	grid-column-start: 2;
-	background-color: #bcbcbc;
-}
-.odd-instrument {
-	display: grid;
-	grid-template-columns: 1fr 1fr 2fr;
-	margin-bottom: 15px;
-	border-bottom: 1px solid gainsboro;
-	max-height: 150px;
-	box-shadow: 4px 4px 4px gainsboro;
-}
-.odd-instrument .left-content {
-	grid-column-start: 1;
-	max-height: inherit;
-}
-.odd-instrument .right-content {
-	grid-column-start: 3;
-	background-color: #bcbcbc;
-	max-height: inherit;
-}
+
 .main-content {
 	position: relative;
 	width: 100%;
@@ -320,35 +716,186 @@
 	right: 15vw;
 	max-width: 30vw;
 }
+.table-style {
+	padding-top: 3px;
+	font-family: Lato;
+}
+.table-header {
+	background: gainsboro;
+}
+.table-header th {
+	color: white;
+}
+.table-even {
+	background: #def3ed;
+}
+.table-odd {
+	background: #f0f9f6;
+}
 .map-result {
 	display: block;
-	padding-top: 100px;
+	padding-top: 20px;
 }
 .map-result img {
 	display: block;
-	margin: 0px 290px;
-	height: 500px;
-	width: 500px;
-	border: 1px solid gainsboro;
-	box-shadow: 5px 5px 5px gainsboro;
+	margin: auto auto;
 }
 .map-result h2 {
 	display: block;
 	text-align: center;
 }
-/****************** OBJECT PAGE CONTENT STYLES **************/
-.map-space {
-	padding-top: 150px;
-	height: 600px;
-	max-width: inherit;
+.top-pad .search-bar {
+	background-color: gainsboro;
 	display: block;
 }
-.equipment-detail  {
-	float: left;
-	width: 400px;
-	border: 1px solid gainsboro;
-	margin-left: 20px;;
+.search-bar .search-query {
+	margin: 50px auto 0px auto;
+	padding: 10px;
+	background-color: gainsboro;
 }
+.search-bar a {
+	font-size: 20px;
+	font-family: Lato;
+	background-color: #7bd5bd;
+	color: white;
+	border-radius: 25px;
+	padding: 10px;
+	text-decoration: none;
+	width: 180px;
+}
+.search-bar a:hover {
+	background-color: #4bbd9e;
+}
+/****************** OBJECT and USER REGISTRATION PAGE CONTENT STYLES **************/
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+	.equipment-detail {
+		width: 280px;
+	}
+	.map-space {
+		padding-top: 60px;
+		max-width: inherit;
+		display: flex;
+		flex-direction: column;
+	}
+	.equipment-detail {
+		order: 2;
+		border: 1px solid gainsboro;
+		margin: 5px 20px;
+	}
+	.equipment-detail img {
+		display: none;
+	}
+	.equipment-detail h2 {
+		display: none;
+		width: 300px;
+		border: 1px solid gainsboro;
+		margin: 0px 10px;
+	}
+	.map {
+		order: 1;
+		margin: 10px;
+		width: 300px;
+		height: 300px;
+	}
+	.map h2 {
+		display: none;
+	}
+	.map img {
+		width: 300px;
+		height: 300px;
+	}
+	.object-detail p {
+		margin: 10px;
+	}
+	.review {
+		display: flex;
+		flex-direction: column;
+	}
+	.right-content {
+		margin-left: 10px;
+	}
+	.right-content p {
+		font-size: 10px;
+	}
+	#uploaded-txt {
+		width: 100px !important;
+	}
+	.upload-button {
+		width: 90px !important;
+	}
+	.input-form .coordinate {
+		width: 95px;
+	}
+}
+@media screen and (min-width: 1024px) {
+	.map-space {
+		padding-top: 100px;
+		height: 600px;
+		max-width: inherit;
+		display: block;
+		padding-bottom: 40px;
+	}
+	.equipment-container {
+		background: gainsboro;
+		max-width: inherit;
+		height: 100%;
+		display: block;
+		margin: 0px 50px;
+		border-radius: 25px;
+	}
+	.equipment-container .search-bar a {
+		margin-left: 30px !important;
+		padding: 4px !important;
+		margin-top: 32px !important;
+		width: 290px !important;
+		margin-left: 40px !important;
+		border-radius: 0px !important;
+	}
+	.map img {
+		height:500px;
+		width:500px;
+		margin: 0 auto;
+	}
+	.equipment-detail  {
+		float: left;
+		width: 300px;
+		margin-left: 40px;
+		display: block;
+		margin-top: 115px;
+		background: #fff;
+		border-radius: 25px 0px 0px 25px;
+	}
+	.object-detail p {
+		margin: 20px;
+	}
+	.review {
+		display: -ms-grid;
+		display: grid;
+		-ms-grid-columns: 1fr 2fr;
+		grid-template-columns: 1fr 2fr;
+	}
+	.map {
+		float: right;
+		margin-right: 50px;
+		border: 1px solid gainsboro;
+		margin-top: 30px;
+	}
+	.map-space h2 {
+		border-radius: 0px 0px 0px 0px;
+		background-color: #7bd5bd !important;
+		color: #fff !important;
+	}
+	#uploaded-txt {
+		width: 200px;
+	}
+	.upload-button {
+		width: 15%;
+	}
+	.input-form .coordinate {
+		width: 183px;
+	}
+}
+
 .map {
 	float: right;
 	margin-right: 20px;
@@ -360,25 +907,25 @@
 	background-color: #f5f5f5;
 	margin: 0;
 	padding: 4px;
-    padding-right: 4px;
+	padding-right: 4px;
 	padding-right: 20px;
 	color: #595959;
 	font-family: Lato;
 	font-size: 20px;
 }
 .review {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
 	max-width: 100%;
 	border-bottom: 2px solid gainsboro;
 	margin-left: 20px;
 	margin-right: 20px;
+	-webkit-box-shadow: 0px 3px 3px gainsboro;
 	box-shadow: 0px 3px 3px gainsboro;
 	margin-top: 0;
 	margin-bottom: 20px;
 	border: 1px solid gainsboro;
 }
 .review .right-content {
+	-ms-grid-column: 2;
 	grid-column-start: 2;
 	grid-column-end: 3;
 }
@@ -394,13 +941,18 @@
 	margin-right: 40px;
 }
 .left-content {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-rows: 1fr 3fr;
 	grid-template-rows: 1fr 3fr;
+	-ms-grid-columns: 1fr 1fr;
 	grid-template-columns: 1fr 1fr;
 }
 .left-content h2 {
+	-ms-grid-column: 1;
 	grid-column-start: 1;
 	grid-column-end: 3;
+	-ms-grid-row: 1;
 	grid-row-start: 1;
 	font-family: Lato;
 	font-size: 20px;
@@ -410,28 +962,47 @@
 	margin-right: 20px;
 }
 .left-content .user {
+	-ms-grid-column: 1;
 	grid-column-start: 1;
+	-ms-grid-row: 2;
 	grid-row-start: 2;
 	margin-left: 5px;
 }
 .left-content .user-info {
+	-ms-grid-row: 2;
+	-ms-grid-column: 2;
 	grid-row-start: 2;
-    margin-right: 20px;
-}
-}
-/***************** STYLES FOR FOOTER *****************/
-footer {
-	background-color: #183638;
-	height: 6vh;
-	bottom:0;
-	position: block;
-	width: 1080px;
+	margin-right: 20px;
 }
 
+/***************** STYLES FOR FOOTER *****************/
+@media screen and (min-width: 1024px) {
+	footer {
+		background-color: #183638;
+		height: 6vh;
+		bottom:0;
+		width: 1024px;
+	}
+}
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+	footer {
+		background-color: #183638;
+		height: 6vh;
+		bottom:0;
+		width: 320px;
+	}
+}
 .footer-grid {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: row;
 	flex-flow: row;
 	margin: 0;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	background-color: #183638;
 }
@@ -444,26 +1015,40 @@ footer {
 	padding-right: 10px;
 }
 .footer-grid a {
-
-    font-family: 'Lato', sans-serif;
-
-;
+	font-family: 'Lato', sans-serif;
 	color:white;
 }
 
 /******************* DEFAULTS FOR RAW TAGS*************** */
 h1 {
 	color: white;
-    font-family: 'Lato', sans-serif;
+	font-family: 'Lato', sans-serif;
 }
 p {
-    font-family: 'Lato', sans-serif;
+	font-family: 'Lato', sans-serif;
 }
 body {
-	background-color: #0c4245;
+	background-color: #7bd5bd;
 }
-@media screen and (min-width: 375px) and (max-width: 1079) {
-	h1 {
-		font-size: 12px;
-	}
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 1px;
+	text-overflow: '';
+}
+input[type=submit],input[type=button] {
+	background-color: #a4dbd6;
+	border: none;
+	font-size: 24px;
+	color: white;
+}
+/******************** UNIVERSAL TAGS **********************/
+.italic {
+	font-style: italic;
+}
+.center {
+	text-align: center;
+}
+.margin-20 p {
+	margin: 20px;
 }
