@@ -254,7 +254,7 @@
 	}
 }
 .search-area {
-	background-image: url("main-background.jpg");
+	background-image: url("pexels-photo-134074.jpeg");
 }
 .search-query {
 	-ms-grid-row: 2;
@@ -294,6 +294,10 @@
 	font-size: 24px;
 	color: white;
 }
+.search-query .search-icon input[type=submit]:hover {
+		background-color: #21b1a4;
+		cursor: pointer;
+	}
 .search-query form {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -395,7 +399,7 @@
 }
 .input-form input[type=text]:focus,.input-form input[type=email]:focus,.input-form input[type=date]:focus, textarea:focus {
 	-webkit-box-shadow: 0 0 5px rgb(21, 79, 7);
-	box-shadow: 0 0 5px rgb(21, 79, 7);
+	box-shadow: 0 0 5px rgb(123, 213, 189);
 	padding: 3px 0px 3px 3px;
 	margin: 5px 1px 3px 0px;
 }
@@ -414,6 +418,9 @@
 }
 .input-form input[type=button] {
 	font-size: 12px;
+}
+.input-form input[type=button]:hover, .input-form input[type=submit]:hover {
+	background-color: #21b1a4;
 }
 #uploaded-txt {
 	width: 210px;
@@ -678,6 +685,9 @@
 	.upload-button {
 		width: 90px !important;
 	}
+	.input-form .coordinate {
+		width: 95px;
+	}
 }
 @media screen and (min-width: 1024px) {
 	.map-space {
@@ -742,6 +752,9 @@
 	}
 	.upload-button {
 		width: 15%;
+	}
+	.input-form .coordinate {
+		width: 183px;
 	}
 }
 
