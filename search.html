@@ -59,6 +59,24 @@
  						<fieldset class="search-bar">
  							<input type="search" placeholder="ie. MassSpectrometer">
  						</fieldset>
+ 						<fieldset class="location-button">
+ 							<input id="current-loc" type="button" onclick="getLocation()" value="Search by 
+Current Location" style="font-size:12px">
+						<script>
+							var x = document.getElementById("current-loc");
+							function getLocation() {
+								if (navigator.geolocation) {
+									navigator.geolocation.getCurrentPosition(showPosition);
+								} else { 
+									x.innerHTML = "Geolocation is not supported by this browser.";
+								}
+							}
+							function showPosition(position) {
+								x.innerHTML = "Latitude: " + position.coords.latitude + 
+								"<br>Longitude: " + position.coords.longitude;
+							}
+						</script>
+ 						</fieldset>
  						<fieldset class="star-search">
  							<!-- Select provides a drop down menu where users can select several objects available to them (in this case different star values will appear) -->
  							<select name="stars">

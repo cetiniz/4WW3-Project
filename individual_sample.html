@@ -93,7 +93,10 @@
  							<div itemscope itemtype="http://schema.org/Place">
  								<div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
  									<h2>Google Map Result</h2>
- 									<img src="GoogleMapTA.jpg" alt="Image shows sample google map, map."/>
+ 									<div id="map-object-result"></div>
+ 									<script src="mapobjectinfo.js"></script>
+    								<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2ZfxbdXbmCk2jFQ-goVc9ZUEJIumYsVo&callback=initMap"
+    								async defer></script>
  									<meta itemprop="latitude" content="74.32" />
  									<meta itemprop="longitude" content="25.98"/>
  								</div>

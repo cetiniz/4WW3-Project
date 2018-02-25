@@ -2,6 +2,7 @@
  <html>
  <head>
  	<title>Account Registration Page</title>
+ 	<script src="form_validation.js" type="text/javascript"></script>
  	<!-- The link below is used to import the main and only external style sheet -->
  	<link href="MyStyleSheet.css" type="text/css" rel="stylesheet"/>
  	<!-- The link below is used to import google fonts -->
@@ -48,25 +49,30 @@
  		<main class="bg-grey">
  			<div class="input-form">
  				<h1>Create Account!</h1>
- 				<form>
- 					<fieldset>
- 						<input type="text" placeholder="Full Name">
+ 				<!-- We set onsubmit to the function we create in the form_validation; event is implicitly passed as the event object for future use-->
+ 				<form name="user-form" onsubmit="formValidator(event)">
+ 					<fieldset name="full-name">
+ 						<input type="text" placeholder="Full Name" onfocus="removeRed(this)">
  					</fieldset>
+ 					<p id="name-error">Name must be First and Last separated by a space!</p>
  					<fieldset>
- 						<input type="email" placeholder="Email Address"/>
+ 						<input type="email" placeholder="Email Address" onfocus="removeRed(this)"/>
  					</fieldset>
+ 					<p id="email-error">Must be a valid email!</p>
  					<fieldset>
  						<input type="date" name="Birthday"/>
  					</fieldset>
  					<fieldset>
- 						<input type="text" placeholder="Username">
+ 						<input type="text" placeholder="Username" onfocus="removeRed(this)">
+ 					</fieldset>
+ 					<p id="username-error">Username may only contain: </p>
+ 					<fieldset>
+ 						<input type="text" placeholder="Password" onfocus="removeRed(this)">
  					</fieldset>
  					<fieldset>
- 						<input type="text" placeholder="Password">
+ 						<input type="text" placeholder="Re type Password" onfocus="removeRed(this)">
  					</fieldset>
- 					<fieldset>
- 						<input type="text" placeholder="Re type Password">
- 					</fieldset>
+ 					<p id="password-error">Passwords must match and be greater than 1 letter!</p>
  					<fieldset class="spam-email">
  						<p>I'd like to recieve a stream of annoying emails</p>
  						<input type="checkbox">

@@ -73,9 +73,11 @@
  					</div>
  				</div>
  				<!-- The map result just shows a static image of a map that will be swapped out with the dynamic google maps map -->
- 				<div class="map-result">	
- 					<img src="GoogleMapTA.jpg" alt="Image shows sample google map, map."/>
- 				</div>
+ 				<div id="map-result"></div>
+ 				<script src="mapinfo.js"></script>
+    			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2ZfxbdXbmCk2jFQ-goVc9ZUEJIumYsVo&callback=initMap"
+    			async defer></script>
+
  				<!-- The filter will eventually display the term that the user searched for and the number of results they got in the query -->
  				<div class="filter">
  					<div class="mid-content">

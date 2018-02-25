@@ -342,9 +342,9 @@ page specifically */
 		height: 80vh;
 		display: -ms-grid;
 		display: grid;
-		-ms-grid-columns: 1fr 2fr 1fr;
-		grid-template-columns: 1fr 2fr 1fr;
-		-ms-grid-rows: 1fr 1fr 1fr;
+		-ms-grid-columns: 1fr 4fr 1fr;
+		grid-template-columns: 1fr 4fr 1fr;
+		-ms-grid-rows: 1fr 4fr 1fr;
 		grid-template-rows: repeat(3,1fr);
 		padding-top: 100px;
 	}
@@ -362,6 +362,21 @@ page specifically */
 		margin-left: 30px;
 		margin-top: 20px;
 		position: absolute;
+	}
+	.location-button {
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+		height: 60px;
+	}
+	.location-button input[type="button"] {
+		font-size: 12px;
+		padding: 0px 20px;
+		height: 60px;
+	}
+	.location-button input[type="button"]:hover {
+		background-color: #21b1a4;
+		cursor: pointer;
 	}
 }
 /* Background image of search area set to night sky.
@@ -483,6 +498,13 @@ design elements */
 @media screen and (min-width: 1024px){
 	.input-form input {
 		width: 370px;		
+	}
+	.input-form p {
+		padding: 0px;
+		margin: 20px 0px 0px 0px;
+		color: red;
+		font-size: 10px;
+		display: none;
 	}
 	.input-form .spam-email {
 		background-color: white;
@@ -615,17 +637,11 @@ when hovered on, helping the user know that the elements are clickable */
 	.search-bar .search-query select {
 		width: 100%;
 	}
-	.map-result {
-		display: block;
+	#map-result {
+		height: 300px;
+		width: 300px;
 		padding-top: 20px;
 		margin-top: 240px;
-	}
-	.map-result img {
-		display: block;
-		margin: auto auto;
-		height: 320px;
-		width: 320px;
-		border: 0px;
 	}
 	/* The !important will override CSS that would
 	otherwise override it. For example, css outside
@@ -656,12 +672,20 @@ when hovered on, helping the user know that the elements are clickable */
 	.search-bar .search-query{
 		width: 500px;
 	}
-	.map-result img {
-		height: 500px;
-		width: 500px;
-		border: 1px solid gainsboro;
+	#map-result {
+		height: 400px;
+		padding-top: 200px;
+		margin: 50px 210px;
 		-webkit-box-shadow: 5px 5px 5px gainsboro;
 		box-shadow: 5px 5px 5px gainsboro;
+		border: 1px solid gainsboro;
+	}
+	#map-object-result {
+		height: 300px;
+		padding-top: 200px;
+		-webkit-box-shadow: 5px 5px 5px gainsboro;
+		box-shadow: 5px 5px 5px gainsboro;
+		border: 1px solid gainsboro;
 	}
 	.table-style {
 		margin: 0px 98px;
@@ -879,6 +903,7 @@ when hovered on, helping the user know that the elements are clickable */
 		margin-right: 50px;
 		border: 1px solid gainsboro;
 		margin-top: 30px;
+		width: 525px;
 	}
 	.map-space h2 {
 		border-radius: 0px 0px 0px 0px;
@@ -1042,6 +1067,9 @@ input[type=submit],input[type=button] {
 	font-size: 24px;
 	color: white;
 }
+a {
+	outline: 0;
+}
 /******************** UNIVERSAL TAGS **********************/
 .italic {
 	font-style: italic;
@@ -1051,4 +1079,9 @@ input[type=submit],input[type=button] {
 }
 .margin-20 p {
 	margin: 20px;
+}
+/******************** STYLE FOR MAP POPOUTS **********************/
+.info-container {
+	height: 100px;
+	width: 300px;
 }
