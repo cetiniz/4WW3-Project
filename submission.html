@@ -52,22 +52,21 @@
  					<!-- The code below is a large form. Each fieldset contains a different type of input. Inputs of type text are just for the user to input text into a text box. The button input will be used to browse through their computers to upload an image of the object. The submit button submits the form to the server -->
  					<form>
  						<fieldset>
- 							<input type="text" placeholder="Object Name">
+ 							<input type="text" placeholder="Object Name" required>
  						</fieldset>
  						<fieldset>
- 							<input type="text" placeholder="Object Description"/>
+ 							<input type="text" required placeholder="Object Description"/>
  						</fieldset>
  						<fieldset>
- 							<input class="coordinate" type="text" placeholder="X Coordinate">
- 							<input class="coordinate" type="text" placeholder="Y Coordinate">
+ 							<input class="coordinate" type="text" placeholder="X Coordinate" required pattern="^\d{2}[.]\d+">
+ 							<input class="coordinate" type="text" placeholder="Y Coordinate" required pattern="^\d{2}[.]\d+">
  						</fieldset>
  						<fieldset>
- 							<span>
- 								<input type="text" placeholder="Uploaded Image" disabled id="uploaded-txt">
- 							</span>
- 							<span>
- 								<input type="button" value="Browse" class="upload-button">
- 							</span>
+ 							<div class="object-submit">
+ 								<input type="text" disabled placeholder="Image Name...">
+ 								<input class="input-file" type="file" placeholder="Uploaded Image" id="file">
+ 								<label for="file">Upload an Image</label>
+ 							</div>
  						</fieldset>
  						<fieldset>
  							<input type="Submit" value="Submit">

@@ -50,7 +50,7 @@
  			<div class="input-form">
  				<h1>Create Account!</h1>
  				<!-- We set onsubmit to the function we create in the form_validation; event is implicitly passed as the event object for future use-->
- 				<form name="user-form" onsubmit="formValidator(event)">
+ 				<form name="user-form" onsubmit="formValidator(event)" novalidate>
  					<fieldset name="full-name">
  						<input type="text" placeholder="Full Name" onfocus="removeRed(this)">
  					</fieldset>
@@ -60,12 +60,13 @@
  					</fieldset>
  					<p id="email-error">Must be a valid email!</p>
  					<fieldset>
- 						<input type="date" name="Birthday"/>
+ 						<input type="date" name="Birthday" onfocus="removeRed(this)"/>
  					</fieldset>
+ 					<p id="date-error">Must enter a birthdate!</p>
  					<fieldset>
  						<input type="text" placeholder="Username" onfocus="removeRed(this)">
  					</fieldset>
- 					<p id="username-error">Username may only contain: </p>
+ 					<p id="username-error">Username must be 5 characters or greater!: </p>
  					<fieldset>
  						<input type="text" placeholder="Password" onfocus="removeRed(this)">
  					</fieldset>

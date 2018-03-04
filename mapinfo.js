@@ -37,30 +37,25 @@ markers.push(new google.maps.Marker({
    map: map
 }));
 // Create info windows per marker
+let infowindow = new google.maps.InfoWindow();
 for(let marker of markers) {
    let contentString = 
    `<div class="info-container">
-   <div id="siteNotice"></div>
-   <h1 id="firstHeading" class="firstHeading">Uluru</h1>
+   <h1 class="mini-heading">Result #: 1 
+   Mass Spectrophotometer</h1>
    <div id="bodyContent">
-   <p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large
-   sandstone rock formation in the southern part of the 
-   Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) 
-   south west of the nearest large town, Alice Springs; 450&#160;km 
-   (280&#160;mi) by road. Kata Tjuta and Uluru are the two major 
-   features of the Uluru - Kata Tjuta National Park. Uluru is 
-   sacred to the Pitjantjatjara and Yankunytjatjara, the 
-   Aboriginal people of the area. It has many springs, waterholes, 
-   rock caves and ancient paintings. Uluru is listed as a World 
-   Heritage Site.</p>
-   <p>Attribution: Uluru, <a href="individual_sample.html">
-   https://en.wikipedia.org/w/index.php?title=Uluru</a> 
-   (last visited June 22, 2009).</p>
+   <p>Sample Review:
+   : Terrible machine don't even think of wasting your money here. 
+   I can't believe how much they are charging for renting this piece 
+   of equipment. I could feed myself subway for a whole week, on 
+   the expensive sub menu as well, for the price they tried to get me 
+   to pay. After finally haggling them down...</p>
+   <div class="redirect-button">
+      <a href="individual_sample.html">See all Reviews!</a> 
+   </div>
    </div>
    </div>`
-   let infowindow = new google.maps.InfoWindow({
-      content: contentString
-   });
+   infowindow.setContent(contentString);
 
    marker.addListener('click', function() {
       infowindow.open(map, marker);

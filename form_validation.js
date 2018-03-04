@@ -1,10 +1,10 @@
 function formValidator(event) {
    // All values obtained here
    let userForm = document.forms["user-form"];
-   let userName = userForm[0].children[0].value;
+   let fullName = userForm[0].children[0].value;
    // Regular Expression for finding two words separated by a space!
    let regExpName = /^\w+\s\w+$/;
-   if(!regExpName.exec(userName)) {
+   if(!regExpName.exec(fullName)) {
       // Alert user as to how the name should be displayed
       userForm[1].style.border = "1px solid red";
       document.getElementById("name-error").style.display = "block";
@@ -34,6 +34,24 @@ function formValidator(event) {
    }
    else {
       document.getElementById("password-error").style.display = "none";
+   }
+   let userName = userForm[7].value;
+   if(userName.length < 5) {
+      userForm[7].style.border = "1px solid red";
+      document.getElementById("username-error").style.display = "block";
+      event.preventDefault();
+   }
+   else {
+      document.getElementById("username-error").style.display = "none";
+   }
+   let date = userForm[5];
+   if(!date.value) {
+      userForm[5].style.border = "1px solid red";
+      document.getElementById("date-error").style.display = "block";
+      event.preventDefault();
+   }
+   else {
+      document.getElementById("date-error").style.display = "none";
    }
 }
 function removeRed(control) {
