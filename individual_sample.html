@@ -3,7 +3,7 @@
  <head>
  	<title>Single Result Page</title>
  	<!-- The link below is used to import the main and only external style sheet -->
- 	<link href="MyStyleSheet.css" type="text/css" rel="stylesheet"/>
+ 	<link href="/css/MyStyleSheet.css" type="text/css" rel="stylesheet"/>
  	<!-- The link below is used to import google fonts -->
  	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/> 
  	<link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet"/> 
@@ -24,14 +24,14 @@
  	<meta property="og:title" content="Mass Spectrophotometer Reviews"/>
  	<meta property="og:description" content="Reviews for the mass spectrometer owned by Dr. Tohid Didar."/>
  	<!-- DISPLAY FOR SAVED APP IN IOS DEVICE -->
- 	<link rel="apple-touch-icon-precomposed" href="logo.svg"/>
+ 	<link rel="apple-touch-icon-precomposed" href="/assets/logo.svg"/>
  	<meta name="apple-mobile-web-app-capable" content="yes"/> <!-- Removes the tool bars and menus -->
  	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- Sets the top bar as transparent -->
  	<meta name="viewport" content = "width = device-width, user-scalable = no" /> <!-- Sets dimensions for app and disables zooming in -->
  	<!-- DISPLAY FOR SAVED APP IN ANDROID DEVICE -->
  	<meta name="mobile-web-app-capable" content="yes"> <!-- tag so chrome recognizes content -->
  	<meta name="viewport" content="width=device-width">
- 	<link rel="icon" sizes="192x192" href="logo.svg">
+ 	<link rel="icon" sizes="192x192" href="/assets/logo.svg">
  </head>
  <body>
  	<!-- Wrapper and header information explained in "search.html" -->
@@ -39,7 +39,7 @@
  		<header>
  			<div class="logo">
  				<div class="left">
- 					<img src="logo.svg" alt="sites logo: shows a cartoon beaker" style="height:30px"/>
+ 					<img src="/assets/logo.svg" alt="sites logo: shows a cartoon beaker" style="height:30px"/>
  				</div>
  				<div class="right">
  					<h1>Equip Me</h1>
@@ -49,16 +49,16 @@
  				<button class="menu-bttn">Menu</button>
  				<ul>
  					<li>
- 						<a href="search.html">Home</a>
+ 						<a href="/">Home</a>
  					</li>
  					<li>
- 						<a href="registration.html">Sign Up</a>
+ 						<a href="/registration/">Sign Up</a>
  					</li>
  					<li>
- 						<a href="search.html">Login</a>
+ 						<a href="/">Login</a>
  					</li>
  					<li>
- 						<a href="submission.html">Submit</a>
+ 						<a href="/submission/">Submit</a>
  					</li>
  				</ul>
  			</nav>
@@ -70,7 +70,7 @@
  					<div class="equipment-container">
  						<!-- The following three lines are used to display a go back anchor tag that looks like a button -->
  						<div class="search-bar">
- 							<a class="go-back" href="results_sample.html"> ← Take me back!</a>
+ 							<a class="go-back" href="../"> ← Take me back!</a>
  						</div>
  						<!-- The following lines of code explain the particular object the user has clicked on from the previous query they did. It is a mass spectrophotometer. More microdata tags are provided such as
  							the name tag, image, and rating -->
@@ -85,7 +85,7 @@
  									<p> <b>Keywords:</b> 'mass-determination', 'analyte-detector'</p>
  								</div>
  							</div>
- 							<img itemprop="image" src="mass_spec.jpg" alt="image of professor with mass spectrometer" style="height:150px;width:150px;margin: 0px 70px;"/>
+ 							<img itemprop="image" src="/assets/mass_spec.jpg" alt="image of professor with mass spectrometer" style="height:150px;width:150px;margin: 0px 70px;"/>
  						</div>
  						<!-- There is a divider here to create a section for what will be the google maps dynamic map but in this case is just a static image of a map -->
  						<div class="map">
@@ -112,7 +112,7 @@
  							<div class="left-content">
  								<h2> Profile </h2>
  								<div class="user">
- 									<img src="face.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">
+ 									<img src="/assets/face.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">
  									<h1>👍 👎</h1>
  									<p>Helpful?</p>
  									<p>+13</p>
@@ -136,7 +136,7 @@
  						<div class="left-content">
  							<h2> Profile </h2>
  							<div class="user">
- 								<img src="face2.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">
+ 								<img src="/assets/face2.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">
  								<h1>👍 👎</h1>
  								<p>Helpful?</p>
  								<p>-5</p>

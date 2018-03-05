@@ -51,7 +51,7 @@ for(let marker of markers) {
    the expensive sub menu as well, for the price they tried to get me 
    to pay. After finally haggling them down...</p>
    <div class="redirect-button">
-      <a href="individual_sample.html">See all Reviews!</a> 
+      <a href="sample/">See all Reviews!</a> 
    </div>
    </div>
    </div>`
