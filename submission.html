@@ -50,7 +50,7 @@
  				<div class="input-form">
  					<h1>Add New Piece of Equipment</h1>
  					<!-- The code below is a large form. Each fieldset contains a different type of input. Inputs of type text are just for the user to input text into a text box. The button input will be used to browse through their computers to upload an image of the object. The submit button submits the form to the server -->
- 					<form>
+ 					<form name="submission-form">
  						<fieldset>
  							<input type="text" placeholder="Object Name" required>
  						</fieldset>
@@ -61,8 +61,26 @@
  							<input class="coordinate" type="text" placeholder="X Coordinate" required pattern="^\d{2}[.]\d+">
  							<input class="coordinate" type="text" placeholder="Y Coordinate" required pattern="^\d{2}[.]\d+">
  						</fieldset>
+ 						<script type="text/javascript">
+ 							let form = document.forms[0];
+ 							let button = document.getElementById("coordinate-button");
+							function getLocation() {
+								if (navigator.geolocation) {
+									navigator.geolocation.getCurrentPosition(fillCoordinates);
+								}
+								else {
+									alert("Geolocation was not enabled!");
+								}
+							}
+							function fillCoordinates(pos) {
+								let coordinates = pos.coords;
+								form[5].value = coordinates.latitude;
+								form[6].value = coordinates.latitude;
+							}
+ 						</script>
+ 						<input id="coordinate-button" type="button" onclick="getLocation()" value="Get Coordinates by Current Location" style="width: 380px;font-size: 16px;margin-top: 10px;">
  						<fieldset>
- 							<div class="object-submit">
+ 							<div class="obect-submit">
  								<input type="text" disabled placeholder="Image Name...">
  								<input class="input-file" type="file" placeholder="Uploaded Image" id="file">
  								<label for="file">Upload an Image</label>

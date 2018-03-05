@@ -339,9 +339,10 @@ page specifically */
     	padding: 0px;
     	border: 0px;
     	outline: none;
+    	height: 50px;
 	}
 	.location-button input {
-		padding: 10px;
+		height: inherit;
 	}
 }
 @media screen and (min-width: 1024px) {
