@@ -382,7 +382,7 @@ page specifically */
 /* Background image of search area set to night sky.
 All classes below are allied to mobile and desktop version */
 .search-area {
-	background-image: url("pexels-photo-134074.jpeg");
+	background-image: url("/assets/pexels-photo-134074.jpeg");
 }
 /* Positioned the search query elements in the very center
 and set the display as a column flex box in order to center
