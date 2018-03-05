@@ -3,7 +3,8 @@
  <head>
  	<title>Results Page</title>
  	<!-- The link below is used to import the main and only external style sheet -->
- 	<link href="MyStyleSheet.css" type="text/css" rel="stylesheet"/>
+ 	<script src="/js/mapinfo.js"></script>
+ 	<link href="/css/MyStyleSheet.css" type="text/css" rel="stylesheet"/>
  	<!-- The link below is used to import google fonts -->
  	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
  	<link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet"/> 
@@ -30,16 +31,16 @@
  				<button class="menu-bttn">Menu</button>
  				<ul>
  					<li>
- 						<a href="search.html">Home</a>
+ 						<a href="/">Home</a>
  					</li>
  					<li>
- 						<a href="registration.html">Sign Up</a>
+ 						<a href="/registration/">Sign Up</a>
  					</li>
  					<li>
- 						<a href="search.html">Login</a>
+ 						<a href="/">Login</a>
  					</li>
  					<li>
- 						<a href="submission.html">Submit</a>
+ 						<a href="/submission/">Submit</a>
  					</li>
  				</ul>
  			</nav>
@@ -74,7 +75,6 @@
  				</div>
  				<!-- The map result just shows a static image of a map that will be swapped out with the dynamic google maps map -->
  				<div id="map-result"></div>
- 				<script src="mapinfo.js"></script>
     			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2ZfxbdXbmCk2jFQ-goVc9ZUEJIumYsVo&callback=initMap"
     			async defer></script>
 
