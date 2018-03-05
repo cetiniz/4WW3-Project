@@ -334,6 +334,15 @@ page specifically */
 	.search-query .search-bar input[type="search"] {
 		border-radius: 20px 20px 0px 0px;
 	}
+	.location-button {
+		margin: 0px;
+    	padding: 0px;
+    	border: 0px;
+    	outline: none;
+	}
+	.location-button input {
+		padding: 10px;
+	}
 }
 @media screen and (min-width: 1024px) {
 	/* Same as above but for a larger screen width (all code
@@ -374,10 +383,10 @@ page specifically */
 		padding: 0px 20px;
 		height: 60px;
 	}
-	.location-button input[type="button"]:hover {
+}
+.location-button input[type="button"]:hover {
 		background-color: #21b1a4;
 		cursor: pointer;
-	}
 }
 /* Background image of search area set to night sky.
 All classes below are allied to mobile and desktop version */
@@ -495,23 +504,24 @@ design elements */
 		height: 60px;
 		margin: 30px 60px;
 	}
+
 }
 @media screen and (min-width: 1024px){
 	.input-form input {
 		width: 370px;		
-	}
-	.input-form p {
-		padding: 0px;
-		margin: 20px 0px 0px 0px;
-		color: red;
-		font-size: 10px;
-		display: none;
 	}
 	.input-form .spam-email {
 		background-color: white;
 		padding: 0;
 		margin: 25px 330px;
 	}
+}
+.input-form p {
+		padding: 0px;
+		margin: 20px 0px 0px 0px;
+		color: red;
+		font-size: 10px;
+		display: none;
 }
 .input-form input {
 	height: 55px;
@@ -663,6 +673,16 @@ when hovered on, helping the user know that the elements are clickable */
 	}
 	.hide {
 		display: none;
+	}
+	.map {
+		margin: 10px;
+	}
+	#map-object-result {
+		position: relative;
+    	overflow: hidden;
+    	width: 300px;
+    	height: 300px;
+    	margin: 0 auto;
 	}
 }
 /* The Rest of the code below is variants of the elements I have described above, using the same techniques! */
