@@ -63,17 +63,14 @@
  							<input id="current-loc" type="button" onclick="getLocation()" value="Search by 
 Current Location" style="font-size:12px">
 						<script>
-							var x = document.getElementById("current-loc");
+							// This is the bare essentials needed for getting a users location through the Geolocation API. This will be used later with dynamic PHP forms
 							function getLocation() {
+								// The navigator is what obtains the users geolocation; we pass the function we want to execute to .getCurrentPosition which is executed as a callback function
 								if (navigator.geolocation) {
-									navigator.geolocation.getCurrentPosition(showPosition);
-								} else { 
-									x.innerHTML = "Geolocation is not supported by this browser.";
-								}
+									navigator.geolocation.getCurrentPosition(addToQuery);
 							}
-							function showPosition(position) {
-								x.innerHTML = "Latitude: " + position.coords.latitude + 
-								"<br>Longitude: " + position.coords.longitude;
+							function addToQuery(position) {
+								// Here later on in the PHP queries we can forward on this information for more advanced queries
 							}
 						</script>
  						</fieldset>

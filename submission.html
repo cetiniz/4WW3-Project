@@ -51,6 +51,7 @@
  					<h1>Add New Piece of Equipment</h1>
  					<!-- The code below is a large form. Each fieldset contains a different type of input. Inputs of type text are just for the user to input text into a text box. The button input will be used to browse through their computers to upload an image of the object. The submit button submits the form to the server -->
  					<form name="submission-form">
+ 						<!-- The required keyword is the html version of form validation and it goes through a custom HTML form validator -->
  						<fieldset>
  							<input type="text" placeholder="Object Name" required>
  						</fieldset>
@@ -58,9 +59,11 @@
  							<input type="text" required placeholder="Object Description"/>
  						</fieldset>
  						<fieldset>
+ 							<!-- I added my own regex pattern to the coordinates to specify the appropriate input for both coordinates using the pattern attribute -->
  							<input class="coordinate" type="text" placeholder="X Coordinate" required pattern="^-?\d{2}[.]\d+">
  							<input class="coordinate" type="text" placeholder="Y Coordinate" required pattern="^-?\d{2}[.]\d+">
  						</fieldset>
+ 						<!-- The script below is a small snippet used to automatically fill in the coordinates with the users current geolocation -->
  						<script type="text/javascript">
  							let form = document.forms[0];
  							let button = document.getElementById("coordinate-button");
@@ -78,7 +81,8 @@
 								form[6].value = coordinates.longitude;
 							}
  						</script>
- 						<input id="coordinate-button" type="button" onclick="getLocation()" value="Get Coordinates by Current Location" style="width: 380px;font-size: 16px;margin-top: 10px;">
+ 						<!-- The button below automatically fills out the coordinates text boxes with the users current geolocation -->
+ 						<input id="coordinate-button" type="button" onclick="getLocation()" value="Get Coordinates by Current Location">
  						<fieldset>
  							<div class="object-submit">
  								<input type="text" disabled placeholder="Image Name...">

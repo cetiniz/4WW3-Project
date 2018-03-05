@@ -892,6 +892,11 @@ when hovered on, helping the user know that the elements are clickable */
 	}
 }
 @media screen and (min-width: 1024px) {
+	#coordinate-button {
+		width: 380px;
+		font-size: 16px;
+		margin-top: 10px;
+	}
 	.map-space {
 		padding-top: 100px;
 		height: 600px;
@@ -958,6 +963,9 @@ when hovered on, helping the user know that the elements are clickable */
 	}
 	.input-form .coordinate {
 		width: 183px;
+	}
+	.object-submit[type="text"] {
+		width: 182px;
 	}
 }
 
@@ -1045,7 +1053,6 @@ when hovered on, helping the user know that the elements are clickable */
     margin: 0 auto;
 }
 .object-submit input[type="text"] {
-	width: 182px;
     float: left;
 }
 .input-file {

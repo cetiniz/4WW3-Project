@@ -50,6 +50,7 @@
  			<div class="input-form">
  				<h1>Create Account!</h1>
  				<!-- We set onsubmit to the function we create in the form_validation; event is implicitly passed as the event object for future use-->
+ 				<!-- Error paragraphs were added to all forms (which are hidden at first). We pass "this" as an argument when we call a function when we want to use the tag as a parameter. We pass "event" (or some other keyword) when we want to pass the event being handled to the function (ie. an onclick event) -->
  				<form name="user-form" onsubmit="formValidator(event)" novalidate>
  					<fieldset name="full-name">
  						<input type="text" placeholder="Full Name" onfocus="removeRed(this)">
