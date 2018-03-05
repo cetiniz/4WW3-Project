@@ -876,6 +876,20 @@ when hovered on, helping the user know that the elements are clickable */
 	.input-form .coordinate {
 		width: 95px;
 	}
+	#coordinate-button {
+		font-size: 10px;
+    	margin-top: 10px;
+	}
+	.object-submit input[type="text"] {
+		width: 80px;
+    	margin-left: 45px;
+	}
+	.object-submit label {
+		width: 70px;
+    	font-size: 12px;
+    	margin-right: 130px;
+    	height: 25px;
+	}
 }
 @media screen and (min-width: 1024px) {
 	.map-space {
