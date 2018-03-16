@@ -18,34 +18,9 @@
  	<!-- Site is wrapped in a unique divider to provide the centered approach to responsive design -->
  	<div id="wrapper">
  		<!-- Header element also contains the navigation menu -->
- 		<header>
- 			<div class="logo">
- 				<div class="left">
- 					<img src="/assets/logo.svg" alt="sites logo: shows a cartoon beaker" style="height:30px"/>
- 				</div>
- 				<div class="right">
- 					<h1>Equip Me</h1>
- 				</div>
- 			</div>
- 			<!-- Navigation menu was created using an encompassing nav element and an unordered list -->
- 			<nav class="menu-nav">
- 				<button class="menu-bttn">Menu</button>
- 				<ul>
- 					<li>
- 						<a href="/">Home</a>
- 					</li>
- 					<li>
- 						<a href="registration/">Sign Up</a>
- 					</li>
- 					<li>
- 						<a href="/">Login</a>
- 					</li>
- 					<li>
- 						<a href="submission/">Submit</a>
- 					</li>
- 				</ul>
- 			</nav>
- 		</header>
+ 		<?php
+ 		include 'header.php';
+ 		?>
  		<!-- Main area contains all the pages content between the header and footer -->
  		<main>
  			<!-- Div element used to create area where search bar will be placed -->
@@ -94,21 +69,9 @@ Current Location" style="font-size:12px">
  			</div>
  		</main>
  		<!-- The footer grid contains copyright information as well as author information that will be updated as the course goes along. It is organized using an unordered list -->
- 		<footer>
- 			<div class="footer-grid">
- 				<ul>
- 					<li>
- 						<a>Legal</a>
- 					</li>
- 					<li>
- 						<a>Disclaimer</a>
- 					</li>
- 					<li>
- 						<a>Author</a>
- 					</li>
- 				</ul>
- 			</div>
- 		</footer>
+ 		<?php
+ 		include 'footer.php';
+ 		?>
  	</div>
  </body>
  </html> 
