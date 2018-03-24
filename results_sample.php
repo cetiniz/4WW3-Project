@@ -116,8 +116,8 @@
  								echo '<tr class="table-odd">';
  							}
  							$real_key = $key + 1;
- 							$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id WHERE object_equipment.equipment_id=" . $value[equipment_id] . " LIMIT 1");
- 							$only_review = $sample_review[0]['review_text'];
+ 							$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id WHERE object_equipment.equipment_id=" . $value[equipment_id]);
+ 							#$only_review = $sample_review[0]['review_text'];
  							echo '<td class="center">' . $real_key . '</td>';
  							echo '<td class="margin-20">';
  							echo '<p><b>Equipment:</b> <br>' . $value['equipment_name'] . '</p>';
@@ -125,7 +125,8 @@
  							echo '<p><b>Owner:</b> <br>' . $value['equipment_owner'] . '</p>';
  							echo '</td>';
  							echo '<td class="margin-20 hide">';
- 							echo '<p style="font-size: 10px">' . $only_review . '</p>';
+ 							echo '<p style="font-size: 10px">' #. $only_review . 
+ 							echo '</p>';
  							echo '</td>';
  							echo '<td>';
  							echo '<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>';
