@@ -3,7 +3,6 @@
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
 	$query = $_POST["query"];
 	$results = $pdo->query("SELECT equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE '%" . $query .  "%'");
-	echo $results[0];
 ?>
 
  <!DOCTYPE html>
