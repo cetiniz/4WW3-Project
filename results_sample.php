@@ -85,6 +85,9 @@
 						echo $_POST["Query"];
 					}
 				?>
+				<?php 
+					echo "MARTHA";
+				?>
  				<div class="filter">
  					<div class="mid-content">
  						<h1>Searched for:</h1>
