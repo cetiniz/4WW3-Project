@@ -82,6 +82,7 @@
  				<!-- The filter will eventually display the term that the user searched for and the number of results they got in the query -->
  				<?php 
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
+						echo "HELLO";
 						echo $_POST["Query"];
 					}
 				?>
