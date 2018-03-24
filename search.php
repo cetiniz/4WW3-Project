@@ -51,7 +51,7 @@ Current Location" style="font-size:12px">
  						</fieldset>
  						<fieldset class="star-search">
  							<!-- Select provides a drop down menu where users can select several objects available to them (in this case different star values will appear) -->
- 							Stars: <select name="stars">
+ 							<select name="stars">
  								<option value="0-star">Select Rating</option>
  								<option value="1-star">☆</option>
  								<option value="2-star">☆☆</option>

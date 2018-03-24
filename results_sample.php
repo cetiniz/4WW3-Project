@@ -1,3 +1,10 @@
+<!-- *************************************************************ACCESS DOC FROM MYSQL************************************************************* -->
+<?php 
+	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
+	$query = $_POST["query"];
+	$results = $pdo->query("SELECT equipment_owner equipment_location equipment_name equipment_department FROM object_equipment WHERE equipment_name LIKE '%" . $query .  "%'");
+?>
+
  <!DOCTYPE html>
  <html>
  <head>
@@ -80,16 +87,11 @@
     			async defer></script>
 
  				<!-- The filter will eventually display the term that the user searched for and the number of results they got in the query -->
- 				<?php 
-					echo $_POST["query"];
-				?>
-				<?php 
-					echo "MARTHA";
-				?>
+ 				
  				<div class="filter">
  					<div class="mid-content">
  						<h1>Searched for:</h1>
- 						<p class="italic"> Mass Spectrometers</p>
+ 						<p class="italic"> <?php echo $_POST["query"];?> </p>
  						<p>Found 3 results for the query</p>
  					</div>
  				</div>
@@ -103,6 +105,30 @@
  						<th>Preview</th>
  					</tr>
  					<!-- The td tags are regular table tags which contain the data that will be filled in dynamically after the server is queried. I included two different variants of CSS so the table rows are alternating colors. -->
+
+ 					<!-- *****************************************************PHP CODE GOES HERE***************************************************** -->
+ 					<?php 
+ 						foreach ($results as $key=>$value) {
+ 							if ($key % 2 == 0) {
+ 								echo '<tr class="table-even">';
+ 							}
+ 							else {
+ 								echo '<tr class="table-odd">';
+ 							}
+ 							echo '<td class="center">' . $key+1 . '</td>';
+ 							echo '<td class="margin-20">';
+ 							echo '<p><b>Equipment:</b> <br>' . $value['equipment_name'] . '</p>';
+ 							echo '<p><b>Department:</b> <br>' . $value['equipment_department'] . '</p>';
+ 							echo '<p><b>Owner:</b> <br>' . $value['equipment_owner'] . '</p>';
+ 							echo '</td>';
+ 							echo '<td class="margin-20 hide">';
+ 							echo '</td>';
+ 							echo '<td>';
+ 							echo '<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>';
+ 							echo '</td>';
+ 							echo '</tr>';
+ 						}
+ 					?>
  					<tr class="table-even">
  						<td class="center">1</td>
  						<td class="margin-20">
@@ -131,6 +157,8 @@
  							<img style="height:100px;width:100px" alt="image of professor with contact angle machine" src="/assets/mass_spec.jpg"/>
  						</td>
  					</tr>
+
+ 					<!-- *****************************************************END OF PHP GENERATION***************************************************** -->
  				</table>
  			</div>
  		</main>
