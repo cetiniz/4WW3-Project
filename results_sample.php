@@ -115,6 +115,7 @@
  							else {
  								echo '<tr class="table-odd">';
  							}
+ 							$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id LIMIT 1");
  							echo '<td class="center">' . $key+1 . '</td>';
  							echo '<td class="margin-20">';
  							echo '<p><b>Equipment:</b> <br>' . $value['equipment_name'] . '</p>';
@@ -122,6 +123,7 @@
  							echo '<p><b>Owner:</b> <br>' . $value['equipment_owner'] . '</p>';
  							echo '</td>';
  							echo '<td class="margin-20 hide">';
+ 							echo '<p style="font-size: 10px">' . $sample_review[0] . '</p>';
  							echo '</td>';
  							echo '<td>';
  							echo '<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>';
@@ -143,21 +145,6 @@
  							<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>
  						</td>
  					</tr>
- 					<tr class="table-odd">
- 						<td class="center">2</td>
- 						<td class="margin-20">
- 							<p><b>Equipment:</b> <br>Contact Angle</p>
- 							<p><b>Department:</b> <br>Engineering</p>
- 							<p><b>Owner:</b> <br>Dr. Carlos Filipe</p>
- 						</td>
- 						<td class="margin-20 hide">
- 							<p style="font-size: 10px">Chris Says: Contact angles will be the death of me. I have never taken such a boring measurement in my entire life. All I do is sit and wait around until water drops onto a piece of glass. I'm going to break this machine one day... </p>
- 						</td>
- 						<td>
- 							<img style="height:100px;width:100px" alt="image of professor with contact angle machine" src="/assets/mass_spec.jpg"/>
- 						</td>
- 					</tr>
-
  					<!-- *****************************************************END OF PHP GENERATION***************************************************** -->
  				</table>
  			</div>
