@@ -116,7 +116,7 @@
  								echo '<tr class="table-odd">';
  							}
  							$real_key = $key + 1;
- 							$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id WHERE object_equipment.equipment_id=" . $value[equipment_id]);
+ 							#$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id WHERE object_equipment.equipment_id=" . $value[equipment_id]);
  							#$only_review = $sample_review[0]['review_text'];
  							echo '<td class="center">' . $real_key . '</td>';
  							echo '<td class="margin-20">';
