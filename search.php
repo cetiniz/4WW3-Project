@@ -32,7 +32,7 @@
  					<!-- The form element contains a text box for user input, a star select (to select and/or filter by rating) and contains a submit form button with a pseudo search icon that acts as a good signifier to let the user know that it is supposed to be a query -->
  					<form action="results/" method="POST">
  						<fieldset class="search-bar">
- 							<input type="search" placeholder="ie. MassSpectrometer">
+ 							Query:<input type="search" placeholder="ie. MassSpectrometer">
  						</fieldset>
  						<fieldset class="location-button">
  							<input id="current-loc" type="button" onclick="getLocation()" value="Search by 
@@ -51,7 +51,7 @@ Current Location" style="font-size:12px">
  						</fieldset>
  						<fieldset class="star-search">
  							<!-- Select provides a drop down menu where users can select several objects available to them (in this case different star values will appear) -->
- 							<select name="stars">
+ 							Stars: <select name="stars">
  								<option value="0-star">Select Rating</option>
  								<option value="1-star">☆</option>
  								<option value="2-star">☆☆</option>
