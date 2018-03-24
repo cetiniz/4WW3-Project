@@ -32,7 +32,7 @@
  					<!-- The form element contains a text box for user input, a star select (to select and/or filter by rating) and contains a submit form button with a pseudo search icon that acts as a good signifier to let the user know that it is supposed to be a query -->
  					<form action="results/" method="post">
  						<fieldset class="search-bar">
- 							Query:<input type="search" placeholder="ie. MassSpectrometer">
+ 							<input type="search" placeholder="ie. MassSpectrometer" name="query">
  						</fieldset>
  						<fieldset class="location-button">
  							<input id="current-loc" type="button" onclick="getLocation()" value="Search by 
