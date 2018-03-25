@@ -52,9 +52,9 @@ results.forEach(function(value,index) {
    <p>Sample Review:
    Click below to see the full number of reviews...</p>
    <div class="redirect-button">
-   <form>
+   <form action="/results/sample/">
    <input type="hidden" value="` + value[5] + `" name="equipment_name">
-   <input type="submit" action="/results/sample/" value="See all Reviews!">
+   <input type="submit"  value="See all Reviews!">
    </form>
    </div>
    </div>
