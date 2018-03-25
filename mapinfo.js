@@ -34,11 +34,10 @@ let markers = [];
 let infowindow = new google.maps.InfoWindow();
 let bounds = new google.maps.LatLngBounds();
 
-for (let index in results) {
-   (function(i) {
+results.foreach(function(value,index) {
 	let curIndex = parseInt(i);
-	let longit = parseInt(results[curIndex].equipment_long);
-	let latit = parseInt(results[curIndex].equipment_lat);
+	let longit = parseInt(value.equipment_long);
+	let latit = parseInt(value.equipment_lat);
 	
    let marker = new google.maps.Marker({
       position: {lat: latit, lng: longit},
@@ -46,17 +45,17 @@ for (let index in results) {
    });
 
    bounds.extend(marker.getPosition())
-   let numberResult= parseInt(i) + 1;
+   let numberResult = index + 1;
    let contentString = 
    `<div class="info-container">
    <h1 class="mini-heading">Result #: ` + numberResult + " " +
-   results[curIndex][5] + `</h1>
+   value[5] + `</h1>
    <div id="bodyContent">
    <p>Sample Review:
    Click below to see the full number of reviews...</p>
    <div class="redirect-button">
    <form>
-   <input type="hidden" value="` + results[i].equipment_name + `" name="equipment_name">
+   <input type="hidden" value="` + value[5] + `" name="equipment_name">
    <input type="submit" action="/results/sample/" value="See all Reviews!">
    </form>
    </div>
@@ -68,7 +67,6 @@ for (let index in results) {
    marker.addListener('click', function() {
       infowindow.open(map, marker);
    });
-})(index);
 }
 map.fitBounds(bounds);
 }
