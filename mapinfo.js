@@ -45,10 +45,10 @@ for (let index in results) {
    });
 
    bounds.extend(marker.getPosition())
-
+   let numberResult= i + 1;
    let contentString = 
    `<div class="info-container">
-   <h1 class="mini-heading">Result #: ` + (i+1) + 
+   <h1 class="mini-heading">Result #: ` + numberResult + " " +
    results[i].equipment_name + `</h1>
    <div id="bodyContent">
    <p>Sample Review:
