@@ -30,49 +30,44 @@ map = new google.maps.Map(document.getElementById('map-result'), {
 // This is where I will dynamically add markers when the server sided coding comes into play!
 let results = JSON.parse(sql_results);
 let markers = [];
-for (let result of results) {
-	let longit = parseInt(result.equipment_long);
-	let latit = parseInt(result.equipment_lat);
-	markers.push(new google.maps.Marker({
-		position: {lat: latit, lng: longit},
-		map: map
-	}));
-}
-markers.push(new google.maps.Marker({
-   position: {lat: 43.26118425368222, lng: -79.92022854617159},
-   map: map
-}));
-markers.push(new google.maps.Marker({
-   position: {lat: 43.26118230039779, lng: -79.91990892740608},
-   map: map
-}));
-// Create info window to show the markers info; this will also be useful later on with the dynamic part.
+
 let infowindow = new google.maps.InfoWindow();
 let bounds = new google.maps.LatLngBounds();
-for(let marker of markers) {
+
+for (let index in results) {
+	let longit = parseInt(results[index].equipment_long);
+	let latit = parseInt(results[index].equipment_lat);
+	
+   let marker = new google.maps.Marker({
+      position: {lat: latit, lng: longit},
+      map: map
+   });
+
    bounds.extend(marker.getPosition())
-   // The content string is what is displayed when the marker is clicked.
+
    let contentString = 
    `<div class="info-container">
-   <h1 class="mini-heading">Result #: 1 
-   Mass Spectrophotometer</h1>
+   <h1 class="mini-heading">Result #: ` + (index+1) + 
+   results[index].equipment_name + `</h1>
    <div id="bodyContent">
    <p>Sample Review:
-   : Terrible machine don't even think of wasting your money here. 
-   I can't believe how much they are charging for renting this piece 
-   of equipment. I could feed myself subway for a whole week, on 
-   the expensive sub menu as well, for the price they tried to get me 
-   to pay. After finally haggling them down...</p>
+   Click below to see the full number of reviews...</p>
    <div class="redirect-button">
-      <a href="sample/">See all Reviews!</a> 
+   <form>
+   <input type="hidden" value="` + results[index].equipment_name + `" name="equipment_name">
+   <input type="submit" action="sample/" value="See all Reviews!">
+   </form>
    </div>
    </div>
    </div>`
+
    infowindow.setContent(contentString);
    // The addLisenter function is an event handler that opens up the infowindow when the marker is clicked on the amp
    marker.addListener('click', function() {
       infowindow.open(map, marker);
    });
+
+   markers.push();
 }
 map.fitBounds(bounds);
 }
