@@ -13,7 +13,8 @@
  <head>
  	<title>Results Page</title>
  	<!-- The link below is used to import the main and only external style sheet -->
- 	<script src="/js/mapinfo.js">var sql_results = "<?php echo json_encode($results); ?>";</script>
+ 	<script type="text/javascript"> var sql_results = "<?php echo json_encode($results); ?>"; </script>
+ 	<script src="/js/mapinfo.js"></script>
  	<link href="/css/MyStyleSheet.css" type="text/css" rel="stylesheet"/>
  	<!-- The link below is used to import google fonts -->
  	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>

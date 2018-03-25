@@ -1,5 +1,4 @@
 // Global map variable here
-console.log(sql_results);
 var map; 
 function initMap() {
 // Styles for the map will go here
@@ -30,6 +29,9 @@ map = new google.maps.Map(document.getElementById('map-result'), {
 });
 // This is where I will dynamically add markers when the server sided coding comes into play!
 let markers = [];
+for (let i of sql_results) {
+   console.log(i);
+}
 markers.push(new google.maps.Marker({
    position: {lat: 43.26118425368222, lng: -79.92022854617159},
    map: map
