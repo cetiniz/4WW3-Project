@@ -117,8 +117,13 @@
  								echo '<tr class="table-odd">';
  							}
  							$real_key = $key + 1;
- 							$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id LIMIT 1");
- 							echo $sample_review[0]['review_text'];
+ 							try {
+ 								$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id LIMIT 1");
+ 								echo $sample_review[0]['review_text'];
+ 							}
+ 							catch {
+ 								print_r($pdo->errorInfo());
+ 							}
  							echo '<td class="center">' . $real_key . '</td>';
  							echo '<td class="margin-20">';
  							echo '<p><b>Equipment:</b> <br>' . $value['equipment_name'] . '</p>';
