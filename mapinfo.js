@@ -36,8 +36,9 @@ let bounds = new google.maps.LatLngBounds();
 
 for (let index in results) {
    (function(i) {
-	let longit = parseInt(results[i].equipment_long);
-	let latit = parseInt(results[i].equipment_lat);
+	let curIndex = parseInt(i);
+	let longit = parseInt(results[curIndex].equipment_long);
+	let latit = parseInt(results[curIndex].equipment_lat);
 	
    let marker = new google.maps.Marker({
       position: {lat: latit, lng: longit},
@@ -45,11 +46,11 @@ for (let index in results) {
    });
 
    bounds.extend(marker.getPosition())
-   let numberResult= i + 1;
+   let numberResult= parseInt(i) + 1;
    let contentString = 
    `<div class="info-container">
    <h1 class="mini-heading">Result #: ` + numberResult + " " +
-   results[i].equipment_name + `</h1>
+   results[curIndex][5] + `</h1>
    <div id="bodyContent">
    <p>Sample Review:
    Click below to see the full number of reviews...</p>
