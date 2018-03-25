@@ -108,6 +108,7 @@
 
  					<!-- *****************************************************PHP CODE GOES HERE***************************************************** -->
  					<?php 
+ 						$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
  						foreach ($results as $key=>$value) {
  							if ($key % 2 == 0) {
  								echo '<tr class="table-even">';
