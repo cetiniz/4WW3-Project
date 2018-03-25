@@ -3,7 +3,7 @@
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = "%" . $_POST["query"] . "%";
-	$get_result = $pdo->prepare("SELECT equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
+	$get_result = $pdo->prepare("SELECT equipment_long, equipment_lat, equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
 	$get_result->execute([$query]);
 	$results = $get_result->fetchAll();
 ?>
