@@ -121,7 +121,7 @@
  								$sample_review = $pdo->query("SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id LIMIT 1");
  								echo $sample_review[0]['review_text'];
  							}
- 							catch {
+ 							catch (Exception $e) {
  								print_r($pdo->errorInfo());
  							}
  							echo '<td class="center">' . $real_key . '</td>';
