@@ -1,4 +1,5 @@
 // Global map variable here
+console.log("hello");
 var map; 
 function initMap() {
 // Styles for the map will go here
