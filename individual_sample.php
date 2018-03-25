@@ -1,3 +1,20 @@
+<!-- *************************************************************ACCESS DOC FROM MYSQL************************************************************* -->
+<?php 
+	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
+	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$query = $_POST["equipment_name"];
+	// STATEMENT TO GET OBJECT INFORMATION 
+	$get_result = $pdo->prepare("SELECT equipment_long, equipment_lat, equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name=?");
+	$get_result->execute([$query]);
+	$object_data = $get_result->fetch();
+
+	// STATEMENT WHERE WE GET ALL REVIEWS SHOULD GO HERE!
+	$review_query = $pdo->prepare("SELECT review_text, review_rating, review_availability, person_id FROM object_review INNER JOIN object_equipment ON object_equipment.equipment_id=object_review.equipment_id AND object_equipment.equipment_name=?");
+	$review_query->execute([$query]);
+	// STATEMENT TO GET PERSON INFO
+	$person_query = $pdo->prepare("SELECT person_name FROM object_person INNER JOIN object_review ON object_review.person_id=? AND object_review.person_id=object_person.person_id");
+?>
+
  <!DOCTYPE html>
  <html>
  <head>
@@ -77,13 +94,15 @@
  						<div class="equipment-detail">
  							<h2>Equipment Detail</h2>
  							<div class="object-detail">	
- 								<p itemprop="name"> <b>Title:</b> Mass Spectrophotometer</p>
- 								<p> <b>Owner:</b> Dr. Tohid Didar </p>
- 								<p> <b>Location:</b> 221 BSB 1280 Main Street West Hamilton </p>
- 								<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
- 									<p> <b>Average Rating:</b> <span itemprop="ratingValue"> 👍👍👍 </span> </p>
- 									<p> <b>Keywords:</b> 'mass-determination', 'analyte-detector'</p>
- 								</div>
+ 								<?php
+ 								echo '<p itemprop="name"> <b>Title:</b>' . $object_data[0].equipment_name . '</p>';
+ 								echo '<p> <b>Owner:</b>' . $object_data[0].equipment_owner . '</p>';
+ 								echo '<p> <b>Location:</b>' $object_data[0].equipment_location . '</p>';
+ 								echo '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">';
+ 								echo '<p> <b>Average Rating:</b> <span itemprop="ratingValue"> 3/5 </span> </p>';
+ 								echo '<p> <b>Keywords:</b> \'Science\', \'Detector\'</p>'
+ 								echo '</div>';
+ 								?>
  							</div>
  							<img itemprop="image" src="/assets/mass_spec.jpg" alt="image of professor with mass spectrometer" style="height:150px;width:150px;margin: 0px 70px;"/>
  						</div>
@@ -108,30 +127,37 @@
  				<!-- This divider is the main container for all of the reviews to come. I wrapped them all in a divider since in the future, the content will be dynamic and therefore will need to be organized into some sort of ordering and styling -->
  				<div class="reviews-container">
  					<!-- More microdata is located here: this microdata is in the form of a review. I gave it data such as the author, rating, and description in the lines 107 ~ 127 -->
- 					<div itemprop="review" itemscope itemtype="http://schema.org/Review">
- 						<div class="review">
- 							<div class="left-content">
- 								<h2> Profile </h2>
- 								<div class="user">
- 									<img src="/assets/face.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">
- 									<h1>👍 👎</h1>
- 									<p>Helpful?</p>
- 									<p>+13</p>
- 								</div>
- 								<div class="user-info">
- 									<p> <b>Reviewer:</b>  <span itemprop="author"> Zach </span> </p>
- 									<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
- 										<p> <b>Rating:</b> <span itemprop="ratingValue"> 👍👍👍👍 </span> </p>
- 									</div>
- 									<p> <b>Availability:</b> Low </p>
- 								</div>
- 							</div>
- 							<div class="right-content">
- 								<h2> Review </h2>
- 								<p> <span itemprop="description">The mass specrophotometer is a legendary machine that helps users learn more about their compound and uncover the secrets within. I will always run a mass spec prior to any other test, regardless of the cost! This machine was simply amazing. It can run mutiple samples and I even broke it a few times but the technician came to repair it. I couldn't even believe it: the service was of the utmost quality. The spectra that I got from the machine was clean, easy to read and very pretty. I ended up just purifing a bunch of methane but thats ok I have so much funding it doesn't really matter. I wonder if thats why all my friends think I'm so smelly... I hope not..</span>  </p>
- 							</div>
- 						</div>
- 					</div>
+ 					<?php 
+ 					foreach($review_query as $value){
+ 						$person_query->execute([$value['person_id']]);
+ 						$person_info = $person_query->fetch();
+ 						$review_txt = addslashes($value['review_text']);
+ 						echo '<div itemprop="review" itemscope itemtype="http://schema.org/Review">';
+ 						echo '<div class="review">';
+ 						echo '<div class="left-content">';
+ 						echo '<h2> Profile </h2>';
+ 						echo '<div class="user">';
+ 						echo '<img src="/assets/face.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">';
+ 						echo '<h1>👍 👎</h1>';
+ 						echo '<p>Helpful?</p>';
+ 						echo '<p>+13</p>';
+ 						echo '</div>';
+ 						echo '<div class="user-info">';
+ 						echo '<p> <b>Reviewer:</b>  <span itemprop="author">' . $person_info['person_name'] . '</span> </p>'
+ 						echo '<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">'
+ 						echo '<p> <b>Rating:</b> <span itemprop="ratingValue">' . $value['review_rating'] . '/5</span> </p>';
+ 						echo '</div>';
+ 						echo '<p> <b>Availability:</b>' . $value['review_availability'] . '</p>';
+ 						echo '</div>'
+ 						echo '</div>'
+ 						echo '<div class="right-content">';
+ 						echo '<h2> Review </h2>';
+ 						echo '<p> <span itemprop="description">' . $review_txt . '</span> </p>';
+ 						echo '</div>';
+ 						echo '</div>';
+ 						echo '</div>';
+ 					}
+ 					?>
  					<!-- The second review can be found here with a different face rating and values -->
  					<div class="review">
  						<div class="left-content">
