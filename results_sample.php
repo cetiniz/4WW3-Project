@@ -3,9 +3,9 @@
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = "%" . $_POST["query"] . "%";
-	$get_result = $pdo->prepare("SELECT equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
+	$get_result = $pdo->prepare("SELECT equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
 	$get_result->execute([$query]);
-	$results = $result->fetch();
+	$results = $get_result->fetchAll();
 ?>
 
  <!DOCTYPE html>
@@ -111,7 +111,7 @@
 
  					<!-- *****************************************************PHP CODE GOES HERE***************************************************** -->
  					<?php 
- 						$sample_review = $pdo->prepare('SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id LIMIT 1')
+ 						$sample_review = $pdo->prepare('SELECT review_text FROM object_equipment INNER JOIN object_review ON object_equipment.equipment_id=object_review.equipment_id WHERE object_equipment.equipment_id=? LIMIT 1');
 
  						foreach ($results as $key=>$value) {
  							if ($key % 2 == 0) {
@@ -121,7 +121,7 @@
  								echo '<tr class="table-odd">';
  							}
  							$real_key = $key + 1;
- 							$sample_review->execute();
+ 							$sample_review->execute([$value['equipment_id']]);
  							$sample_first = $sample_review->fetch();
  							echo '<td class="center">' . $real_key . '</td>';
  							echo '<td class="margin-20">';
@@ -130,7 +130,7 @@
  							echo '<p><b>Owner:</b> <br>' . $value['equipment_owner'] . '</p>';
  							echo '</td>';
  							echo '<td class="margin-20 hide">';
- 							echo '<p style="font-size: 10px">' . $sample_first[0]['review_text'] . '</p>';
+ 							echo '<p style="font-size: 10px">' . $sample_first[0] . '</p>';
  							echo '</td>';
  							echo '<td>';
  							echo '<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>';
