@@ -31,11 +31,9 @@ map = new google.maps.Map(document.getElementById('map-result'), {
 let results = JSON.parse(sql_results);
 let markers = [];
 
-let infowindow = new google.maps.InfoWindow();
 let bounds = new google.maps.LatLngBounds();
-
-results.foreach(function(value,index) {
-	let curIndex = parseInt(i);
+let infowindow = new google.maps.InfoWindow();
+results.forEach(function(value,index) {
 	let longit = parseInt(value.equipment_long);
 	let latit = parseInt(value.equipment_lat);
 	
@@ -43,13 +41,13 @@ results.foreach(function(value,index) {
       position: {lat: latit, lng: longit},
       map: map
    });
-
    bounds.extend(marker.getPosition())
    let numberResult = index + 1;
+   let resultName = value[5];
    let contentString = 
    `<div class="info-container">
    <h1 class="mini-heading">Result #: ` + numberResult + " " +
-   value[5] + `</h1>
+   resultName + `</h1>
    <div id="bodyContent">
    <p>Sample Review:
    Click below to see the full number of reviews...</p>
@@ -62,11 +60,11 @@ results.foreach(function(value,index) {
    </div>
    </div>`
 
-   infowindow.setContent(contentString);
    // The addLisenter function is an event handler that opens up the infowindow when the marker is clicked on the amp
    marker.addListener('click', function() {
+      infowindow.setContent(contentString);
       infowindow.open(map, marker);
    });
-}
+});
 map.fitBounds(bounds);
 }
