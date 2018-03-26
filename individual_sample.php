@@ -11,6 +11,7 @@
 	// STATEMENT WHERE WE GET ALL REVIEWS SHOULD GO HERE!
 	$review_query = $pdo->prepare("SELECT review_text, review_rating, review_availability, person_id FROM object_review INNER JOIN object_equipment ON object_equipment.equipment_id=object_review.equipment_id AND object_equipment.equipment_name=?");
 	$review_query->execute([$query]);
+	$total_reviews = $review_query->fetchAll();
 	// STATEMENT TO GET PERSON INFO
 	$person_query = $pdo->prepare("SELECT person_name FROM object_person INNER JOIN object_review ON object_review.person_id=? AND object_review.person_id=object_person.person_id");
 ?>
@@ -95,12 +96,12 @@
  							<h2>Equipment Detail</h2>
  							<div class="object-detail">	
  								<?php
- 								echo '<p itemprop="name"> <b>Title:</b>' . $object_data[0].equipment_name . '</p>';
- 								echo '<p> <b>Owner:</b>' . $object_data[0].equipment_owner . '</p>';
- 								echo '<p> <b>Location:</b>' $object_data[0].equipment_location . '</p>';
+ 								echo '<p itemprop="name"> <b>Title:</b> ' . $object_data['equipment_name'] . '</p>';
+ 								echo '<p> <b>Owner:</b> ' . $object_data['equipment_owner'] . '</p>';
+ 								echo '<p> <b>Location:</b> ' . $object_data['equipment_location'] . '</p>';
  								echo '<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">';
  								echo '<p> <b>Average Rating:</b> <span itemprop="ratingValue"> 3/5 </span> </p>';
- 								echo '<p> <b>Keywords:</b> \'Science\', \'Detector\'</p>'
+ 								echo '<p> <b>Keywords:</b> \'Science\', \'Detector\'</p>';
  								echo '</div>';
  								?>
  							</div>
@@ -128,7 +129,7 @@
  				<div class="reviews-container">
  					<!-- More microdata is located here: this microdata is in the form of a review. I gave it data such as the author, rating, and description in the lines 107 ~ 127 -->
  					<?php 
- 					foreach($review_query as $value){
+ 					foreach($total_reviews as $value){
  						$person_query->execute([$value['person_id']]);
  						$person_info = $person_query->fetch();
  						$review_txt = addslashes($value['review_text']);
@@ -143,13 +144,13 @@
  						echo '<p>+13</p>';
  						echo '</div>';
  						echo '<div class="user-info">';
- 						echo '<p> <b>Reviewer:</b>  <span itemprop="author">' . $person_info['person_name'] . '</span> </p>'
- 						echo '<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">'
+ 						echo '<p> <b>Reviewer:</b>  <span itemprop="author">' . $person_info['person_name'] . '</span> </p>';
+ 						echo '<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
  						echo '<p> <b>Rating:</b> <span itemprop="ratingValue">' . $value['review_rating'] . '/5</span> </p>';
  						echo '</div>';
  						echo '<p> <b>Availability:</b>' . $value['review_availability'] . '</p>';
- 						echo '</div>'
- 						echo '</div>'
+ 						echo '</div>';
+ 						echo '</div>';
  						echo '<div class="right-content">';
  						echo '<h2> Review </h2>';
  						echo '<p> <span itemprop="description">' . $review_txt . '</span> </p>';
