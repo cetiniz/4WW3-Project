@@ -160,26 +160,6 @@
  					}
  					?>
  					<!-- The second review can be found here with a different face rating and values -->
- 					<div class="review">
- 						<div class="left-content">
- 							<h2> Profile </h2>
- 							<div class="user">
- 								<img src="/assets/face2.jpg" alt="Displays face of individual that gave a review" style="height:60px;width:60px">
- 								<h1>👍 👎</h1>
- 								<p>Helpful?</p>
- 								<p>-5</p>
- 							</div>
- 							<div class="user-info">
- 								<p> <b>Reviewer:</b> Marta </p>
- 								<p> <b>Rating:</b>👍👍</p>
- 								<p> <b>Availability:</b> Low </p>
- 							</div>
- 						</div>
- 						<div class="right-content">
- 							<h2> Review </h2>
- 							<p> This has got to be the worst machine I have ever used in my whole life. It was super sticky, produced the most unreadable spectra I have ever seen in my life. Dr. Harrison once told me that when life gives you lemons run them through a mass spectra. Well I did and I ended up paying just over a thousand dollars to fix the machine! What a rip-off. Apperently it had been broken a few times before from a previous user so now I had to fork up the pretty penny to fix it. Well after it fixed at least I got a decent spectra. I'm still very upset that I had to pay such an egregious fee to fix the machine even though it wasn't me who broke it in the first place.  </p>
- 						</div>
- 					</div>
  				</div>
  			</div>
  		</main>
