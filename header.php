@@ -1,6 +1,3 @@
-<?php
-	session_start();
-?>
 <header>
 	<div class="logo">
 		<div class="left">
@@ -23,7 +20,7 @@
 			<li>
 				<?php
 					if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == True) {
-						echo 'Logged in as: ' . $_SESSION['username'];
+						echo '<a href="/login">' . 'Logged in as: ' . $_SESSION['username'] . '</a>';
 					}
 					else {
 						echo '<a href="/login">Login</a>';

@@ -1,5 +1,6 @@
 <!-- *************************************************************ACCESS DOC FROM MYSQL************************************************************* -->
 <?php 
+	session_start();
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = "%" . $_POST["query"] . "%";
