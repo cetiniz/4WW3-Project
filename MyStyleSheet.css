@@ -966,7 +966,8 @@ when hovered on, helping the user know that the elements are clickable */
 		width: 183px;
 	}
 	.object-submit[type="text"] {
-		width: 182px;
+		width: 180px;
+		display: flex;
 	}
 }
 

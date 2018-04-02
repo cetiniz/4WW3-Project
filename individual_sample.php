@@ -55,33 +55,9 @@
  <body>
  	<!-- Wrapper and header information explained in "search.html" -->
  	<div id="wrapper">
- 		<header>
- 			<div class="logo">
- 				<div class="left">
- 					<img src="/assets/logo.svg" alt="sites logo: shows a cartoon beaker" style="height:30px"/>
- 				</div>
- 				<div class="right">
- 					<h1>Equip Me</h1>
- 				</div>
- 			</div>
- 			<nav class="menu-nav">
- 				<button class="menu-bttn">Menu</button>
- 				<ul>
- 					<li>
- 						<a href="/">Home</a>
- 					</li>
- 					<li>
- 						<a href="/registration/">Sign Up</a>
- 					</li>
- 					<li>
- 						<a href="/">Login</a>
- 					</li>
- 					<li>
- 						<a href="/submission/">Submit</a>
- 					</li>
- 				</ul>
- 			</nav>
- 		</header>
+ 		<?php
+ 		include '/header.php';
+ 		?>
  		<main>
  			<!-- itemscope/itemtype is part of the microdata specifications: in this case I am indicating that the data being presented is a product (I wasn't too sure what other category it would fall under) -->
  			<div itemscope itemtype="http://schema.org/Product">

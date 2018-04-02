@@ -1,3 +1,6 @@
+ <?php
+	session_start();
+?>
  <!DOCTYPE html>
  <html>
  <head>
@@ -17,33 +20,9 @@
  <body>
  	<!-- Header code explained in "search.html" -->
 	<div id="wrapper">
- 		<header>
- 			<div class="logo">
- 				<div class="left">
- 					<img src="/assets/logo.svg" style="height:30px" alt="Logo of website is a beaker"/>
- 				</div>
- 				<div class="right">
- 					<h1>Equip Me</h1>
- 				</div>
- 			</div>
- 			<nav class="menu-nav">
- 				<button class="menu-bttn">Menu</button>
- 				<ul>
- 					<li>
- 						<a href="/">Home</a>
- 					</li>
- 					<li>
- 						<a href="/registration/">Sign Up</a>
- 					</li>
- 					<li>
- 						<a href="/">Login</a>
- 					</li>
- 					<li>
- 						<a href="/submission/">Submit</a>
- 					</li>
- 				</ul>
- 			</nav>
- 		</header>
+ 		<?php
+ 		include '/header.php';
+ 		?>
  		<!-- I reused the same classes and elements from the submission page for the registration page. However, in the registration page I used a variety of different inputs. The text input still just accepts user text however the email input shows a email specific box with a variety of checking options. The date field shows a nice date selector pop down when it is chosen. I also included the checkbox in the form of the annoying checkbox that is usually included at the end of all "registration" type of pages. -->
  		<main class="bg-grey">
  			<?php

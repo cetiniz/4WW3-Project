@@ -17,33 +17,9 @@
  <body>
  	<!-- Header code explained in "search.html" -->
  	<div id="wrapper">
- 		<header>
- 			<div class="logo">
- 				<div class="left">
- 					<img src="/assets/logo.svg" style="height:30px" alt="Logo of website is a beaker"/>
- 				</div>
- 				<div class="right">
- 					<h1>Equip Me</h1>
- 				</div>
- 			</div>
- 			<nav class="menu-nav">
- 				<button class="menu-bttn">Menu</button>
- 				<ul>
- 					<li>
- 						<a href="/">Home</a>
- 					</li>
- 					<li>
- 						<a href="/registration/">Sign Up</a>
- 					</li>
- 					<li>
- 						<a href="/">Login</a>
- 					</li>
- 					<li>
- 						<a href="/submission/">Submit</a>
- 					</li>
- 				</ul>
- 			</nav>
- 		</header>
+ 		<?php
+ 		include '/header.php';
+ 		?>
  		<!-- The code below contains the user form that will be used to submit new pieces of machinery to the map, making their presence known -->
  		<main class="bg-grey">
  			<div class="right-content">
