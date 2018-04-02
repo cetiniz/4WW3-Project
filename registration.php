@@ -49,9 +49,10 @@
  		$last_id = $pdo->prepare("SELECT max(person_id) FROM object_person");
  		$last_id->execute();
  		$id = $last_id->fetch();
+		$final_id = 1 + (int)$id['person_id'];
 		$post_registration = $pdo->prepare("INSERT INTO object_person (person_id, person_name,person_email,person_birthdate,person_username, person_password) 
 			VALUES(?,?,?,?,?,?)");
-		$post_registration->execute(1 + (int)$id["person_id"],[$_POST['full_name'],$_POST['email'],$_POST['date'],$_POST['username'],$password]);
+		$post_registration->execute($final_id,[$_POST['full_name'],$_POST['email'],$_POST['date'],$_POST['username'],$password]);
  	}
  
  ?>
