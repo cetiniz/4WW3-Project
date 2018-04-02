@@ -1,9 +1,8 @@
  <?php
  $posted = False;
  $list_of_errors = array();
- if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- 	$posted = True;
  	if (!empty($_POST)){
+ 		$posted = True;
  		if (isset($_POST["full_name"])){
  			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
  				$error_message = "The name was not valid!";
@@ -24,7 +23,8 @@
  			}
  		}
  		// ****************CHECK IF USERNAME ALREADY EXISTS****************////////////////
- 		if (isset($_POST["username"])) {
+ 		if (isset($_POST["username"]) && !empty($_POST["username"])) {
+ 			$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
  			$username_check = $pdo->prepare("SELECT person_username FROM object_person WHERE object_person.person_username=?");
  			$username_check->execute([$_POST["username"]]);
  			$usernames = $username_check->fetch();
@@ -42,15 +42,15 @@
  		$error_message = "The form was not filled out at all!";
  		array_push($list_of_errors, $error_message);
  	}
- 	if(empty($list_of_errors)) {
- 		$salt = bin2hex(random_bytes(20));
- 		$password = hash('sha256', CONCAT($_POST['password'],$salt));
+ if(empty($list_of_errors)) {
+ 		$salt = bin2hex($_POST['password']);
+ 		$password = hash('sha256', $_POST['password'] . $salt);
  		$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
-		$post_registration = $pdo->prepare("INSERT INTO object_person (person_name,person_email,person_birthdate,person_username, person_password) 
+		$post_registration = $pdo->prepare("INSERT INTO object_person (person_id, person_name,person_email,person_birthdate,person_username, person_password) 
 			VALUES(5,?,?,?,?,?)");
-		$post_registration->execute([$_POST['full_name'],$_POST['email'],$_POST['date'],$_POST['username'],$_POST['full_name'],$password]);
+		$post_registration->execute([$_POST['full_name'],$_POST['email'],$_POST['date'],$_POST['username'],$password]);
  	}
- }
+ 
  ?>
  <!DOCTYPE html>
  <html>
@@ -129,7 +129,7 @@
  						$password = $_POST["password"];
  						$re_password = $_POST["re_password"];
  					}
- 					echo '<form name="user-form" onsubmit="formValidator(event)" novalidate action="/registration" method="post">';
+ 					echo '<form name="user-form" onsubmit="formValidator(event)" novalidate action="/registration/" method="post">';
  					echo '<fieldset name="full-name">';
  					echo '<input name="full_name" type="text" placeholder="Full Name" onfocus="removeRed(this)" value="' . $name . '">';
  					echo '</fieldset>';
