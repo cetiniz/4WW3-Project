@@ -56,7 +56,7 @@
  	<!-- Wrapper and header information explained in "search.html" -->
  	<div id="wrapper">
  		<?php
- 		include '/header.php';
+ 		include 'header.php';
  		?>
  		<main>
  			<!-- itemscope/itemtype is part of the microdata specifications: in this case I am indicating that the data being presented is a product (I wasn't too sure what other category it would fall under) -->

@@ -31,7 +31,7 @@
  	<!-- Header code explained in "search.html" -->
  	<div id="wrapper">
  		<?php
- 		include '/header.php';
+ 		include 'header.php';
  		?>
  		<main>
  			<div class="main-content">

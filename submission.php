@@ -18,7 +18,7 @@
  	<!-- Header code explained in "search.html" -->
  	<div id="wrapper">
  		<?php
- 		include '/header.php';
+ 		include 'header.php';
  		?>
  		<!-- The code below contains the user form that will be used to submit new pieces of machinery to the map, making their presence known -->
  		<main class="bg-grey">
