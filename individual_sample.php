@@ -162,26 +162,68 @@
  					?>
  					<!-- The second review can be found here with a different face rating and values -->
  				</div>
- 					<div class="add-review">
- 						<h1> Add a Review! </h1>
-						<form>
-							<input type="text">
-							<select name="rating">
+ 					<div class="add-review" style="
+    margin: 10px 20px;
+    border: 1px solid gainsboro;
+    box-shadow: gainsboro 2px 2px 2px;
+">
+ 						<h1 style="
+    color: black;
+    margin-left: 25px;
+"> Add a Review! </h1>
+						<div style="
+    /* display:  grid; */
+    margin: 10px 20px;
+">
+						<form style="
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+">
+							<div style="grid-column-start:  1;">
+							<input type="text" style="
+    width: 700px;
+    height: 400px;
+    border: 1px solid gainsboro;
+">
+</div>
+<div style="
+    grid-column-start:  2;
+    display:  flex;
+    flex-direction: column;
+">
+							<select name="rating" style="
+    height: 50px;
+    background: white;
+    padding: 5px;
+    border:  1px solid gainsboro;
+">
+								<option value="Add rating">Add rating</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
 							</select>
-							<select name="availability">
+							<select name="availability" style="
+    height: 50px;
+    background: white;
+    border:  1px solid gainsboro;
+    padding: 5px;
+">
+								<option value="Rate Availability">Rate Availability</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
 							</select>
-							<input type="submit">
+							<input type="submit" style="
+    /* width: 50px; */
+    height: 40px;
+">
+</div>
 						</form>
+					</div>
 					</div>
  			</div>
  		</main>

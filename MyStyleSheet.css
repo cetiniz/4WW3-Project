@@ -881,8 +881,9 @@ when hovered on, helping the user know that the elements are clickable */
     	margin-top: 10px;
 	}
 	.object-submit input[type="text"] {
-		width: 80px;
+		width: 180px;
     	margin-left: 45px;
+    	display: flex;
 	}
 	.object-submit label {
 		width: 70px;
