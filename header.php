@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <header>
 	<div class="logo">
 		<div class="left">
@@ -15,13 +18,20 @@
 				<a href="/">Home</a>
 			</li>
 			<li>
-				<a href="registration/">Sign Up</a>
+				<a href="/registration/">Sign Up</a>
 			</li>
 			<li>
-				<a href="/">Login</a>
+				<?php
+					if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == True) {
+						echo 'Logged in as: ' . $_SESSION['username'];
+					}
+					else {
+						echo '<a href="/login">Login</a>';
+					}
+				?>
 			</li>
 			<li>
-				<a href="submission/">Submit</a>
+				<a href="/submission">Submit</a>
 			</li>
 		</ul>
 	</nav>
