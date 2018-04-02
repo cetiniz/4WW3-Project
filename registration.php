@@ -25,14 +25,13 @@
  		}
  		// ****************CHECK IF USERNAME ALREADY EXISTS****************////////////////
  		if (isset($_POST["username"])) {
- 			$username_check = $pdo->prepare("SELECT person_username FROM object_user WHERE object_person.person_username=?");
+ 			$username_check = $pdo->prepare("SELECT person_username FROM object_person WHERE object_person.person_username=?");
  			$username_check->execute([$_POST["username"]]);
  			$usernames = $username_check->fetch();
  			if (!empty($usernames)) {
  				$error_message = "The username already exists!";
  				array_push($list_of_errors, $error_message);
  			}
-			echo 'hrllo';
  		}
  		else {
  			$error_message = "A username must be entered!";
