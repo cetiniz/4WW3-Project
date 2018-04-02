@@ -46,8 +46,8 @@
  		$salt = bin2hex(random_bytes(20));
  		$password = hash('sha256', CONCAT($_POST['password'],$salt));
  		$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
-		$post_registration = $pdo->prepare("INSERT INTO object_person ('person_name','person_email','person_birthdate','person_username', 'person_password') 
-			VALUES(?,?,?,?,?)");
+		$post_registration = $pdo->prepare("INSERT INTO object_person (person_name,person_email,person_birthdate,person_username, person_password) 
+			VALUES(5,?,?,?,?,?)");
 		$post_registration->execute([$_POST['full_name'],$_POST['email'],$_POST['date'],$_POST['username'],$_POST['full_name'],$password]);
  	}
  }
