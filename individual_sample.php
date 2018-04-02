@@ -166,8 +166,20 @@
  						<h1> Add a Review! </h1>
 						<form>
 							<input type="text">
-							<input type="dropdown">
-							<input type="dropdown">
+							<select name="rating">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<select name="availability">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
 							<input type="submit">
 						</form>
 					</div>
