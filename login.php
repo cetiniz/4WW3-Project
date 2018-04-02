@@ -1,7 +1,23 @@
 <?php
 	session_start();
+	$failed = False;
 	if (!empty($_POST)){
-		$pdo = 
+		$failed = True;
+		if (!empty($_POST['username']) && !empty($_POST['password'])){
+			$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
+			$confirm_pass = $pdo->prepare("SELECT username, password FROM object_person WHERE object_person.username=?");
+			$confirm_pass->execute([$_POST['username']]);
+			$password_data = $confirm_pass->fetch();
+
+			// Find encrypted pass
+			$encrypted_post = hash('sha256', $POST["password"]);
+			if ($encrypted_post == $password_data['password']) {
+				$_SESSION['logged_in'] = True;
+				$_SESSION['username'] = $POST["username"];
+				$failed = False;
+			}
+		}
+	}
 ?>
  <!DOCTYPE html>
  <html>
@@ -30,6 +46,9 @@
  			<?php
  			if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == False) {
 	 			echo '<div class="input-form">';
+	 			if ($failed) {
+	 				echo '<h1 style="color:red">Wrong Credentials!</h1>';
+	 			}
 	 			echo '<h1>Log in to your account!</h1>';
 	 			// We set onsubmit to the function we create in the form_validation; event is implicitly passed as the event object for future use-->
 	 			// Error paragraphs were added to all forms (which are hidden at first). We pass "this" as an argument when we call a function when we want to use the tag as a parameter. We pass "event" (or some other keyword) when we want to pass the event being handled to the function (ie. an onclick event) 
