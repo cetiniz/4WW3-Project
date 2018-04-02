@@ -162,6 +162,15 @@
  					?>
  					<!-- The second review can be found here with a different face rating and values -->
  				</div>
+ 					<div class="add-review">
+ 						<h1> Add a Review! </h1>
+						<form>
+							<input type="text">
+							<input type="dropdown">
+							<input type="dropdown">
+							<input type="submit">
+						</form>
+					</div>
  			</div>
  		</main>
  		<!-- Refer to "search.html" for more information regarding the footer -->
