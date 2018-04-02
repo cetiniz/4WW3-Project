@@ -32,6 +32,7 @@
  				$error_message = "The username already exists!";
  				array_push($list_of_errors, $error_message);
  			}
+			echo 'hrllo';
  		}
  		else {
  			$error_message = "A username must be entered!";
