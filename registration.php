@@ -1,4 +1,5 @@
- <?php
+<?php
+session_start();
  $posted = False;
  $list_of_errors = array();
  	if (!empty($_POST)){

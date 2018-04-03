@@ -1,7 +1,26 @@
-<!-- *************************************************************ACCESS DOC FROM MYSQL************************************************************* -->
 <?php 
 	session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+header("Location: https://cetiniz.cs4ww3.ca/");
+}
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
+	if (sizeof($_POST) == 4){
+		// One line to get the review_id
+		$last_id = $pdo->prepare("SELECT max(review_id) FROM object_review");
+		$last_id->execute();
+ 		$id = $last_id->fetch();
+		$final_id = 1 + (int)$id[0];
+		// One line to get person_id
+		// One line to get equipment_id 
+		$get_result = $pdo->prepare("SELECT  equipment_id FROM object_equipment WHERE equipment_name=?"); 
+		$get_result->execute([$_POST['equipment_name']]);
+		$equip_id = $get_result->fetch();
+		// Last line to POST data
+		$post_review = $pdo->prepare("INSERT INTO object_review (review_id, review_rating, review_availability, review_text, person_id, equipment_id) 
+		VALUES(?,?,?,?,?,?)");
+		$post_review->execute([$final_id, $_POST['rating'], $_POST['availability'], $_POST['review_text'], $_SESSION['id'], $equip_id[0]]);	
+		sleep(1);
+	}
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = $_POST["equipment_name"];
 	// STATEMENT TO GET OBJECT INFORMATION 
@@ -15,6 +34,8 @@
 	$total_reviews = $review_query->fetchAll();
 	// STATEMENT TO GET PERSON INFO
 	$person_query = $pdo->prepare("SELECT person_name FROM object_person INNER JOIN object_review ON object_review.person_id=? AND object_review.person_id=object_person.person_id");
+	
+	
 ?>
 
  <!DOCTYPE html>
@@ -65,7 +86,12 @@
  					<div class="equipment-container">
  						<!-- The following three lines are used to display a go back anchor tag that looks like a button -->
  						<div class="search-bar">
- 							<a class="go-back" href="../"> ← Take me back!</a>
+							<?php
+							echo '<form action="/results/" method="post">';
+							echo '<input name="query" type="hidden" value="' . $_POST['equipment_name']  . '">';
+							echo '<input type="submit" class="go-back" value="← Take me back!"</input>';
+							echo '</form>';
+							?>
  						</div>
  						<!-- The following lines of code explain the particular object the user has clicked on from the previous query they did. It is a mass spectrophotometer. More microdata tags are provided such as
  							the name tag, image, and rating -->
@@ -138,69 +164,38 @@
  					?>
  					<!-- The second review can be found here with a different face rating and values -->
  				</div>
- 					<div class="add-review" style="
-    margin: 10px 20px;
-    border: 1px solid gainsboro;
-    box-shadow: gainsboro 2px 2px 2px;
-">
- 						<h1 style="
-    color: black;
-    margin-left: 25px;
-"> Add a Review! </h1>
-						<div style="
-    /* display:  grid; */
-    margin: 10px 20px;
-">
-						<form style="
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-">
-							<div style="grid-column-start:  1;">
-							<input type="text" style="
-    width: 700px;
-    height: 400px;
-    border: 1px solid gainsboro;
-">
-</div>
-<div style="
-    grid-column-start:  2;
-    display:  flex;
-    flex-direction: column;
-">
-							<select name="rating" style="
-    height: 50px;
-    background: white;
-    padding: 5px;
-    border:  1px solid gainsboro;
-">
-								<option value="Add rating">Add rating</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-							<select name="availability" style="
-    height: 50px;
-    background: white;
-    border:  1px solid gainsboro;
-    padding: 5px;
-">
-								<option value="Rate Availability">Rate Availability</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-							<input type="submit" style="
-    /* width: 50px; */
-    height: 40px;
-">
-</div>
-						</form>
-					</div>
-					</div>
+					<?php
+					if ($_SESSION['logged_in'] == True){
+ 					echo '<div class="add-review" style="margin: 10px 20px;border: 1px solid gainsboro;box-shadow: gainsboro 2px 2px 2px;">';
+ 					echo '	<h1 style="color: black;margin-left: 25px;"> Add a Review! </h1>';
+					echo '	<div style="/* display:  grid; */margin: 10px 20px;">';
+					echo '	<form action="/results/sample/" method="post" style="display: grid;grid-template-columns: 3fr 1fr;">';
+					echo '		<div style="grid-column-start:  1;">';
+					echo '		<input name="review_text" type="text" style="width: 700px;height: 400px;border: 1px solid gainsboro;"></div>';
+					echo '<div style="grid-column-start:  2;display:  flex;flex-direction: column;">';
+							echo '<select name="rating" style="height: 50px;background: white;padding: 5px;border:  1px solid gainsboro;">';
+							echo '	<option value="Add rating">Add rating</option>';
+							echo '	<option value="1">1</option>';
+							echo '	<option value="2">2</option>';
+							echo '	<option value="3">3</option>';
+							echo '	<option value="4">4</option>';
+							echo '	<option value="5">5</option>';
+						echo '	</select>';
+						echo '	<select name="availability" style="height: 50px;background: white;border:  1px solid gainsboro;padding: 5px;">';
+						echo '		<option value="Rate Availability">Rate Availability</option>';
+						echo '		<option value="1">1</option>';
+						echo '		<option value="2">2</option>';
+						echo '		<option value="3">3</option>';
+						echo '		<option value="4">4</option>';
+						echo '		<option value="5">5</option>';
+						echo '	</select>';
+						echo '	<input type="submit" style="/* width: 50px; */height: 40px;"></div>';
+						echo '  <input type="hidden" name="equipment_name" value="' . $_POST['equipment_name'] . '">'; 
+					echo '	</form>';
+					echo '</div>';
+					echo '</div>';
+					}
+					?>
  			</div>
  		</main>
  		<!-- Refer to "search.html" for more information regarding the footer -->

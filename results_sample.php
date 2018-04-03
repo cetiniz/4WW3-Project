@@ -1,6 +1,8 @@
-<!-- *************************************************************ACCESS DOC FROM MYSQL************************************************************* -->
 <?php 
 	session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+   header("Location: https://cetiniz.cs4ww3.ca/");
+}
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = "%" . $_POST["query"] . "%";
@@ -40,9 +42,9 @@
  					<div class="search-bar">
  						<a class="go-back" href="../"> ← Take me back!</a>
  						<div class="search-query">
- 							<form>
+ 							<form action="/results/" method="post">
  								<fieldset class="search-bar">
- 									<input type="search" placeholder="ie. MassSpectrometer">
+ 									<input name="query" type="search" placeholder="ie. MassSpectrometer">
  								</fieldset>
  								<fieldset class="star-search">
  									<select name="stars">
@@ -116,20 +118,6 @@
  							echo '</tr>';
  						}
  					?>
- 					<tr class="table-even">
- 						<td class="center">1</td>
- 						<td class="margin-20">
- 							<p><b>Equipment:</b> <br>Mass spectrometer</p>
- 							<p><b>Department:</b> <br>Chemistry</p>
- 							<p><b>Owner:</b> <br>Dr. Tohid Didar</p>
- 						</td>
- 						<td class="margin-20 hide">
- 							<p style="font-size: 10px">Jerold Says: Terrible machine don't even think of wasting your money here. I can't believe how much they are charging for renting this piece of equipment. I could feed myself subway for a whole week, on the expensive sub menu as well, for the price they tried to get me to pay. After finally haggling them down... </p>
- 						</td>
- 						<td>
- 							<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>
- 						</td>
- 					</tr>
  					<!-- *****************************************************END OF PHP GENERATION***************************************************** -->
  				</table>
  			</div>

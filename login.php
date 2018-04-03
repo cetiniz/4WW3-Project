@@ -2,10 +2,16 @@
 	session_start();
 	$failed = False;
 	if (!empty($_POST)){
+		if (isset($_POST['log_out'])){
+			$_SESSION['logged_in'] = False;
+			$_SESSION['username'] = "";
+			$_SESSION['id'] = "";	
+		}
+		else {
 		$failed = True;
 		if (!empty($_POST['username']) && !empty($_POST['password'])){
 			$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
-			$confirm_pass = $pdo->prepare("SELECT person_username, person_password, person_salt FROM object_person WHERE object_person.person_username=?");
+			$confirm_pass = $pdo->prepare("SELECT person_id, person_username, person_password, person_salt FROM object_person WHERE object_person.person_username=?");
 			$confirm_pass->execute([$_POST['username']]);
 			$password_data = $confirm_pass->fetch();
 			// Find encrypted pass
@@ -15,8 +21,10 @@
 			if ($encrypted_post == $password_data['person_password']) {
 				$_SESSION['logged_in'] = True;
 				$_SESSION['username'] = $_POST["username"];
+				$_SESSION['id'] = $_POST["person_id"];
 				$failed = False;
 			}
+		}
 		}
 	}
 ?>
@@ -43,9 +51,9 @@
  		include 'header.php';
  		?>
  		<!-- I reused the same classes and elements from the submission page for the registration page. However, in the registration page I used a variety of different inputs. The text input still just accepts user text however the email input shows a email specific box with a variety of checking options. The date field shows a nice date selector pop down when it is chosen. I also included the checkbox in the form of the annoying checkbox that is usually included at the end of all "registration" type of pages. -->
- 		<main class="bg-grey">
  			<?php
  			if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == False) {
+ 				echo '<main class="bg-grey">';
 	 			echo '<div class="input-form">';
 	 			if ($failed) {
 	 				echo '<h1 style="color:red;">Wrong Credentials!</h1>';
@@ -66,9 +74,32 @@
 	 			echo '</fieldset>';
 	 			echo '</form>';
 	 			echo '</div>';
+				echo '</main>';
  			}
  			else {
- 				echo '<h1>You are logged in!</h1>';
+				echo '<main style="min-height: 700px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;">';
+				echo '<div style="    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-flow: column;
+    outline: 1px solid gainsboro;
+    box-shadow: 3px 3px 3px gainsboro;
+    ">';
+ 				echo '<h1 style="grid-column: 2;
+    color: black;
+    grid-row: 2;
+    text-align: center;
+    ">You are logged in!</h1>';
+				echo ' <form style="    margin: 0 auto;" action="/login/" method="post" > ';
+				echo ' <input type="hidden" value="log_out" name="log_out">';
+				echo ' <input style="height: 70px;
+    width: 250px;" type="submit" value="Log Out!">';
+				echo ' </form>';
+				echo '</div>';
+				echo ' </main>';
  			}
  			?>
  		</main>
