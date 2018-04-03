@@ -511,6 +511,9 @@ design elements */
 	.input-form input {
 		width: 370px;		
 	}
+	.upload-text .input-form input {
+		width: 180px;
+	}
 	.input-form .spam-email {
 		background-color: white;
 		padding: 0;

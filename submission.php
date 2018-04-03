@@ -29,7 +29,7 @@
  				<div class="input-form">
  					<h1>Add New Piece of Equipment</h1>
  					<!-- The code below is a large form. Each fieldset contains a different type of input. Inputs of type text are just for the user to input text into a text box. The button input will be used to browse through their computers to upload an image of the object. The submit button submits the form to the server -->
- 					<form name="submission-form">
+ 					<form name="submission-form" action="/submission/" method="post">
  						<!-- The required keyword is the html version of form validation and it goes through a custom HTML form validator -->
  						<fieldset>
  							<input type="text" placeholder="Object Name" required>
@@ -64,7 +64,7 @@
  						<input id="coordinate-button" type="button" onclick="getLocation()" value="Get Coordinates by Current Location">
  						<fieldset>
  							<div class="object-submit">
- 								<input type="text" disabled placeholder="Image Name...">
+ 								<input style="width: 180px" class="upload-text" type="text" disabled placeholder="Image Name...">
  								<input class="input-file" type="file" placeholder="Uploaded Image" id="file">
  								<label for="file">Upload an Image</label>
  							</div>
