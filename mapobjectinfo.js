@@ -22,45 +22,50 @@ let styles = [
    ]
 }
 ]
-map = new google.maps.Map(document.getElementById('map-object-result'), {
-   center: {lat: 43.26118230039779, lng: -79.91990892740608},
+// This creates a new instance of a Google Map, currently centered on an arbitrary location
+map = new google.maps.Map(document.getElementById('map-result'), {
+   center: {lat: 43.260879, lng: -79.91922540000002},
    zoom: 17,
    styles: styles
 });
-// This is where I will dynamically add markers
+// This is where I will dynamically add markers when the server sided coding comes into play!
+let results = JSON.parse(sql_results);
 let markers = [];
-markers.push(new google.maps.Marker({
-   position: {lat: 43.26118230039779, lng: -79.91990892740608},
-   map: map
-}));
-// Create info windows per marker
-for(let marker of markers) {
+
+let bounds = new google.maps.LatLngBounds();
+let infowindow = new google.maps.InfoWindow();
+results.forEach(function(value,index) {
+   let longit = parseInt(value.equipment_long);
+   let latit = parseInt(value.equipment_lat);
+   
+   let marker = new google.maps.Marker({
+      position: {lat: latit, lng: longit},
+      map: map
+   });
+   bounds.extend(marker.getPosition())
+   let numberResult = index + 1;
+   let resultName = value[5];
    let contentString = 
    `<div class="info-container">
-   <div id="siteNotice"></div>
-   <h1 id="firstHeading" class="firstHeading">Uluru</h1>
+   <h1 class="mini-heading">Result #: ` + numberResult + " " +
+   resultName + `</h1>
    <div id="bodyContent">
-   <p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large
-   sandstone rock formation in the southern part of the 
-   Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) 
-   south west of the nearest large town, Alice Springs; 450&#160;km 
-   (280&#160;mi) by road. Kata Tjuta and Uluru are the two major 
-   features of the Uluru - Kata Tjuta National Park. Uluru is 
-   sacred to the Pitjantjatjara and Yankunytjatjara, the 
-   Aboriginal people of the area. It has many springs, waterholes, 
-   rock caves and ancient paintings. Uluru is listed as a World 
-   Heritage Site.</p>
-   <p>Attribution: Uluru, <a href="individual_sample.html">
-   https://en.wikipedia.org/w/index.php?title=Uluru</a> 
-   (last visited June 22, 2009).</p>
+   <p>Sample Review:
+   Click below to see the full number of reviews...</p>
+   <div class="redirect-button">
+   <form action="/results/sample/" method="post">
+   <input type="hidden" value="` + value[5] + `" name="equipment_name">
+   <input type="submit"  value="See all Reviews!">
+   </form>
+   </div>
    </div>
    </div>`
-   let infowindow = new google.maps.InfoWindow({
-      content: contentString
-   });
 
+   // The addLisenter function is an event handler that opens up the infowindow when the marker is clicked on the amp
    marker.addListener('click', function() {
+      infowindow.setContent(contentString);
       infowindow.open(map, marker);
    });
-}
+});
+map.fitBounds(bounds);
 }

@@ -1,6 +1,65 @@
 <?php
-	session_start();
-?>
+session_start();
+ $posted = False;
+ $list_of_errors = array();
+ 	if (!empty($_POST)){
+ 		$posted = True;
+ 		if (isset($_POST["equipment_name"])){
+ 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
+ 				$error_message = "The name was not valid!";
+ 				array_push($list_of_errors, $error_message);
+ 			}
+ 		}
+ 		if (isset($_POST["location_name"])){
+ 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
+ 				$error_message = "The name was not valid!";
+ 				array_push($list_of_errors, $error_message);
+ 			}
+ 		}
+ 		if (isset($_POST["department"])){
+ 			if (!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $_POST["email"])) {
+ 				$error_message = "The email was not valid!";
+ 				array_push($list_of_errors, $error_message);
+
+ 			}
+ 		}
+ 		if (isset($_POST["owner"])){
+ 			if ($_POST["password"] !== $_POST["re_password"] || empty($_POST["password"]) || empty($_POST["re_password"])) {
+ 				$error_message = "The passwords did not match or were blank!";
+ 				array_push($list_of_errors, $error_message);
+ 			}
+ 		}
+ 		if (isset($_POST["x_coordinate"])){
+ 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
+ 				$error_message = "The name was not valid!";
+ 				array_push($list_of_errors, $error_message);
+ 			}
+ 		}
+ 		if (isset($_POST["y_coordinate"])){
+ 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
+ 				$error_message = "The name was not valid!";
+ 				array_push($list_of_errors, $error_message);
+ 			}
+ 		}
+ 		
+ 		// ****************CHECK IF USERNAME ALREADY EXISTS****************////////////////
+ 	}
+ 	else {
+ 		$error_message = "The form was not filled out at all!";
+ 		array_push($list_of_errors, $error_message);
+ 	}
+ if(empty($list_of_errors)) {
+ 		$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
+ 		$last_id = $pdo->prepare("SELECT max(equipment_id) FROM object_equipment");
+ 		$last_id->execute();
+ 		$id = $last_id->fetch();
+		$final_id = 1 + (int)$id[0];
+		$post_registration = $pdo->prepare("INSERT INTO object_equipment (equipment_id, equipment_department,equipment_owner,equipment_name,equipment_long, equipment_lat) 
+			VALUES(?,?,?,?,?,?)");
+		$post_registration->execute([$final_id,$_POST['department'],$_POST['owner'],$_POST['equipment_name'],$_POST['x_coordinate'],$_POST['y_coordinate']]);
+ 	}
+ 
+ ?>
  <!DOCTYPE html>
  <html>
  <head>
@@ -32,21 +91,21 @@
  					<form name="submission-form" action="/submission/" method="post">
  						<!-- The required keyword is the html version of form validation and it goes through a custom HTML form validator -->
  						<fieldset>
- 							<input type="text" placeholder="Equipment Name" required>
+ 							<input type="text" placeholder="Equipment Name" name="equipment_name" required>
  						</fieldset>
  						<fieldset>
- 							<input type="text" required placeholder="Department"/>
+ 							<input type="text" required placeholder="Department" name="department"/>
  						</fieldset>
  						<fieldset>
- 							<input type="text" required placeholder="Owner"/>
+ 							<input type="text" required placeholder="Owner" name="owner"/>
  						</fieldset>
  						<fieldset>
- 							<input type="text" required placeholder="Location Name"/>
+ 							<input type="text" required placeholder="Location Name" name="location_name"/>
  						</fieldset>
  						<fieldset>
  							<!-- I added my own regex pattern to the coordinates to specify the appropriate input for both coordinates using the pattern attribute -->
- 							<input class="coordinate" type="text" placeholder="X Coordinate" required pattern="^-?\d{2}[.]\d+">
- 							<input class="coordinate" type="text" placeholder="Y Coordinate" required pattern="^-?\d{2}[.]\d+">
+ 							<input class="coordinate" type="text" placeholder="X Coordinate" name="x_coordinate" required pattern="^-?\d{2}[.]\d+">
+ 							<input class="coordinate" type="text" placeholder="Y Coordinate" name="y_coordinate" required pattern="^-?\d{2}[.]\d+">
  						</fieldset>
  						<!-- The script below is a small snippet used to automatically fill in the coordinates with the users current geolocation -->
  						<script type="text/javascript">
@@ -71,7 +130,7 @@
  						<fieldset>
  							<div class="object-submit">
  								<input style="width: 180px" class="upload-text" type="text" disabled placeholder="Image Name...">
- 								<input class="input-file" type="file" placeholder="Uploaded Image" id="file">
+ 								<input name="file" class="input-file" type="file" placeholder="Uploaded Image" id="file">
  								<label for="file">Upload an Image</label>
  							</div>
  						</fieldset>

@@ -34,8 +34,6 @@ header("Location: https://cetiniz.cs4ww3.ca/");
 	$total_reviews = $review_query->fetchAll();
 	// STATEMENT TO GET PERSON INFO
 	$person_query = $pdo->prepare("SELECT person_name FROM object_person INNER JOIN object_review ON object_review.person_id=? AND object_review.person_id=object_person.person_id");
-	
-	
 ?>
 
  <!DOCTYPE html>
@@ -72,6 +70,7 @@ header("Location: https://cetiniz.cs4ww3.ca/");
  	<meta name="mobile-web-app-capable" content="yes"> <!-- tag so chrome recognizes content -->
  	<meta name="viewport" content="width=device-width">
  	<link rel="icon" sizes="192x192" href="/assets/logo.svg">
+ 	<script type="text/javascript"> var sql_results = '<?php echo json_encode($object_data); ?>'; </script>
  </head>
  <body>
  	<!-- Wrapper and header information explained in "search.html" -->
