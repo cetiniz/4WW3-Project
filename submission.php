@@ -32,10 +32,16 @@
  					<form name="submission-form" action="/submission/" method="post">
  						<!-- The required keyword is the html version of form validation and it goes through a custom HTML form validator -->
  						<fieldset>
- 							<input type="text" placeholder="Object Name" required>
+ 							<input type="text" placeholder="Equipment Name" required>
  						</fieldset>
  						<fieldset>
- 							<input type="text" required placeholder="Object Description"/>
+ 							<input type="text" required placeholder="Department"/>
+ 						</fieldset>
+ 						<fieldset>
+ 							<input type="text" required placeholder="Owner"/>
+ 						</fieldset>
+ 						<fieldset>
+ 							<input type="text" required placeholder="Location Name"/>
  						</fieldset>
  						<fieldset>
  							<!-- I added my own regex pattern to the coordinates to specify the appropriate input for both coordinates using the pattern attribute -->
