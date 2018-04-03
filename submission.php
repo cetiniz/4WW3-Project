@@ -62,8 +62,8 @@
 							}
 							function fillCoordinates(pos) {
 								let coordinates = pos.coords;
-								form[5].value = coordinates.latitude;
-								form[6].value = coordinates.longitude;
+								form[9].value = coordinates.latitude;
+								form[10].value = coordinates.longitude;
 							}
  						</script>
  						<!-- The button below automatically fills out the coordinates text boxes with the users current geolocation -->
