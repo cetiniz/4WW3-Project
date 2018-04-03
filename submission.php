@@ -5,8 +5,8 @@ session_start();
  	if (!empty($_POST)){
  		$posted = True;
  		if (isset($_POST["equipment_name"])){
- 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
- 				$error_message = "The name was not valid!";
+ 			if (!(strlen($_POST["equipment_name"]) > 0)) {
+ 				$error_message = "Equipment name must be greater than 1 letter!";
  				array_push($list_of_errors, $error_message);
  			}
  		}
