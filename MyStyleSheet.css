@@ -530,6 +530,7 @@ design elements */
 }
 .bg-grey {
 	background-color: #f8f8f8;
+	    min-height: 700px;
 }
 .input-form {
 	min-height: 500px;
