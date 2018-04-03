@@ -11,37 +11,35 @@ session_start();
  			}
  		}
  		if (isset($_POST["location_name"])){
- 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
- 				$error_message = "The name was not valid!";
+ 			if (!(strlen($_POST["location_name"]) > 0)) {
+ 				$error_message = "Location name must be greater than 1 letter!";
  				array_push($list_of_errors, $error_message);
  			}
  		}
  		if (isset($_POST["department"])){
- 			if (!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $_POST["email"])) {
- 				$error_message = "The email was not valid!";
+ 			if (!(strlen($_POST["department"]) > 0)) {
+ 				$error_message = "Department name must be greater than 1 letter!";
  				array_push($list_of_errors, $error_message);
-
  			}
  		}
  		if (isset($_POST["owner"])){
- 			if ($_POST["password"] !== $_POST["re_password"] || empty($_POST["password"]) || empty($_POST["re_password"])) {
- 				$error_message = "The passwords did not match or were blank!";
+ 			if (!(strlen($_POST["owner"]) > 0)) {
+ 				$error_message = "Owner name must be greater than 1 letter!";
  				array_push($list_of_errors, $error_message);
  			}
  		}
  		if (isset($_POST["x_coordinate"])){
- 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
- 				$error_message = "The name was not valid!";
+ 			if (!(strlen($_POST["x_coordinate"]) > 0)) {
+ 				$error_message = "X_coordinate name must be greater than 1 letter!";
  				array_push($list_of_errors, $error_message);
  			}
  		}
  		if (isset($_POST["y_coordinate"])){
- 			if (!preg_match('/^\w+\s\w+$/', $_POST["full_name"])) {
- 				$error_message = "The name was not valid!";
+ 			if (!(strlen($_POST["y_coordinate"]) > 0)) {
+ 				$error_message = "Y_coordinate name must be greater than 1 letter!";
  				array_push($list_of_errors, $error_message);
  			}
  		}
- 		
  		// ****************CHECK IF USERNAME ALREADY EXISTS****************////////////////
  	}
  	else {
@@ -86,6 +84,19 @@ session_start();
  		<main class="bg-grey">
  			<div class="right-content">
  				<div class="input-form">
+ 					<?php
+ 					if ($posted){
+ 						if (!empty($list_of_errors)){
+ 							echo '<h1 style="color:red; font-size: 18px">Errors Were Detected on Submission Errors displayed below:</h1>';
+ 							foreach($list_of_errors as $value){
+ 								echo '<p style="display:block; font-size: 14px">' . $value . "</p>";
+ 							}
+ 						}
+ 						else {
+ 							echo '<h1 style="color:green; margin_bottom: 10px">Data was Submitted Correctly!</h1>';
+ 						}
+ 					}
+ 					?>
  					<h1>Add New Piece of Equipment</h1>
  					<!-- The code below is a large form. Each fieldset contains a different type of input. Inputs of type text are just for the user to input text into a text box. The button input will be used to browse through their computers to upload an image of the object. The submit button submits the form to the server -->
  					<form name="submission-form" action="/submission/" method="post">
