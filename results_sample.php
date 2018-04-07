@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = "%" . $_POST["query"] . "%";
-	$get_result = $pdo->prepare("SELECT equipment_long, equipment_lat, equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
+	$get_result = $pdo->prepare("SELECT equipment_imagekey, equipment_long, equipment_lat, equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
 	$get_result->execute([$query]);
 	$results = $get_result->fetchAll();
 ?>
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
  							echo '<p style="font-size: 10px">' . $sample_first[0] . '</p>';
  							echo '</td>';
  							echo '<td>';
- 							echo '<img src="/assets/mass_spec.jpg" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>';
+ 							echo '<img src="https://s3.us-east-2.amazonaws.com/cetiniz-image-storage/' . $value['equipment_imagekey'] . '" style="height:100px;width:100px" alt="image of professor with mass spectrometer"/>';
  							echo '</td>';
  							echo '</tr>';
  						}

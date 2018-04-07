@@ -1,5 +1,8 @@
 <?php
 session_start();
+require 'vendor/autoload.php';
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
  $posted = False;
  $list_of_errors = array();
  	if (!empty($_POST)){
@@ -40,6 +43,10 @@ session_start();
  				array_push($list_of_errors, $error_message);
  			}
  		}
+		if (!isset($_FILES['file'])){
+			$error_message = "File was not uploaded!";
+ 			array_push($list_of_errors, $error_message);
+		}
  		// ****************CHECK IF USERNAME ALREADY EXISTS****************////////////////
  	}
  	else {
@@ -52,9 +59,30 @@ session_start();
  		$last_id->execute();
  		$id = $last_id->fetch();
 		$final_id = 1 + (int)$id[0];
-		$post_registration = $pdo->prepare("INSERT INTO object_equipment (equipment_id, equipment_department,equipment_owner,equipment_name,equipment_long, equipment_lat) 
-			VALUES(?,?,?,?,?,?)");
-		$post_registration->execute([$final_id,$_POST['department'],$_POST['owner'],$_POST['equipment_name'],$_POST['x_coordinate'],$_POST['y_coordinate']]);
+		$post_registration = $pdo->prepare("INSERT INTO object_equipment (equipment_id, equipment_department,equipment_owner,equipment_name,equipment_long, equipment_lat, equipment_location,equipment_imagekey) 
+			VALUES(?,?,?,?,?,?,?,?)");
+		$post_registration->execute([$final_id,$_POST['department'],$_POST['owner'],$_POST['equipment_name'],$_POST['x_coordinate'],$_POST['y_coordinate'], $_POST['location_name'], $_FILES['file']['name']]);
+		if (isset($_FILES["file"])){
+
+		$filename = $_FILES['file']['name'];
+		$s3Client = new S3Client([
+			'region' => 'us-east-2',
+			'version' => '2006-03-01',
+			'credentials' => array(
+    				'key' => 'AKIAI2FJOU3AZWAEW3YQ',
+    				'secret'  => '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' 
+			)
+		]);
+		try {
+		$s3Client->putObject([
+			'Bucket' => 'cetiniz-image-storage',
+			'Key' => $_FILES['file']['name'],
+			'SourceFile' => $_FILES['file']['tmp_name'],
+		]);
+		}
+		catch (S3Exception $e) {
+		}
+		}
  	}
  
  ?>
@@ -99,7 +127,7 @@ session_start();
  					?>
  					<h1>Add New Piece of Equipment</h1>
  					<!-- The code below is a large form. Each fieldset contains a different type of input. Inputs of type text are just for the user to input text into a text box. The button input will be used to browse through their computers to upload an image of the object. The submit button submits the form to the server -->
- 					<form name="submission-form" action="/submission/" method="post">
+ 					<form name="submission-form" action="/submission/" method="post" enctype="multipart/form-data">
  						<!-- The required keyword is the html version of form validation and it goes through a custom HTML form validator -->
  						<fieldset>
  							<input type="text" placeholder="Equipment Name" name="equipment_name" required>
@@ -141,7 +169,7 @@ session_start();
  						<fieldset>
  							<div class="object-submit">
  								<input style="width: 180px" class="upload-text" type="text" disabled placeholder="Image Name...">
- 								<input name="file" class="input-file" type="file" placeholder="Uploaded Image" id="file">
+ 								<input name="file" class="input-file" type="file" placeholder="Uploaded Image" id="file"> 
  								<label for="file">Upload an Image</label>
  							</div>
  						</fieldset>
