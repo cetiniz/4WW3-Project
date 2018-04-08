@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == False){
+   header("Location: https://cetiniz.cs4ww3.ca/login/");
+}
 require 'vendor/autoload.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;

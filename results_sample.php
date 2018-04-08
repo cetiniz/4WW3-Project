@@ -1,13 +1,37 @@
 <?php 
-	session_start();
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
    header("Location: https://cetiniz.cs4ww3.ca/");
 }
 	$pdo = new PDO('mysql:host=localhost; dbname=World_Data','cetiniz','$uperC00l');
+	$get_result;
 	$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$query = "%" . $_POST["query"] . "%";
-	$get_result = $pdo->prepare("SELECT equipment_imagekey, equipment_long, equipment_lat, equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?");
-	$get_result->execute([$query]);
+	$number_stars = (int) $_POST['stars'];
+	$query_string = "SELECT equipment_imagekey, equipment_long, equipment_lat, equipment_id, equipment_owner, equipment_location, equipment_name, equipment_department FROM object_equipment WHERE equipment_name LIKE ?";
+	if ($number_stars > 0){
+		$query_string = $query_string . " AND equipment_avg_rating=?";
+		if (!empty($_POST['lng'])){
+			$query_string = $query_string . " AND equipment_long=? AND equipment_lat=?";
+			$get_result = $pdo->prepare($query_string);
+			$get_result->execute([$query,$number_stars,$_POST['lng'],$_POST['lat']]);
+		}
+		else {
+			$get_result = $pdo->prepare($query_string);
+			$get_result->execute([$query,$number_stars]);
+		}
+	}
+	else {
+		if (!empty($_POST['lng'])){
+			$query_string = $query_string . " AND equipment_long=? AND equipment_lat=?";
+			$get_result = $pdo->prepare($query_string);
+			$get_result->execute([$query,$_POST['lng'],$_POST['lat']]);
+		}
+		else {
+			$get_result = $pdo->prepare($query_string);
+			$get_result->execute([$query]);
+		}	
+	}
 	$results = $get_result->fetchAll();
 ?>
 

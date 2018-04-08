@@ -43,7 +43,7 @@ results.forEach(function(value,index) {
    });
    bounds.extend(marker.getPosition())
    let numberResult = index + 1;
-   let resultName = value[5];
+   let resultName = value[6];
    let contentString = 
    `<div class="info-container">
    <h1 class="mini-heading">Result #: ` + numberResult + " " +
@@ -53,7 +53,7 @@ results.forEach(function(value,index) {
    Click below to see the full number of reviews...</p>
    <div class="redirect-button">
    <form action="/results/sample/" method="post">
-   <input type="hidden" value="` + value[5] + `" name="equipment_name">
+   <input type="hidden" value="` + value[6] + `" name="equipment_name">
    <input type="submit"  value="See all Reviews!">
    </form>
    </div>
